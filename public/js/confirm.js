@@ -32,4 +32,11 @@ $( document ).ready(function() {
 		cancelButton: "Cancelar",
 	});
 
+	$(".confirm_desvincular_F").confirm({
+	    title: 'Desvincular horas',
+	    content: 'Va a desvincular las horas asociadas al día ¿Desea continuar?',
+        confirmButton: "Continuar",
+		cancelButton: "Cancelar",
+	});
+
 } );

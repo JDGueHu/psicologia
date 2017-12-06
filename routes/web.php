@@ -41,8 +41,27 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'uses' => 'diasController@activar',
 		'as' => 'dias.activar'
 	]);
-	Route::get('dias/{id}/consultar_horas',[
-		'uses' => 'diasController@consultar_horas',
-		'as' => 'dias.consultar_horas'
+	Route::get('dias/{id}/asociar_horas',[
+		'uses' => 'diasController@asociar_horas',
+		'as' => 'dias.asociar_horas'
 	]);
+	Route::post('dias/asociar_horas_store',[
+		'uses' => 'diasController@asociar_horas_store',
+		'as' => 'dias.asociar_horas_store'
+	]);
+	Route::get('dias/{id}/desvincular_horas',[
+		'uses' => 'diasController@desvincular_horas',
+		'as' => 'dias.desvincular_horas'
+	]);
+
+	Route::resource('modalidad','modalidadesController');
+	Route::get('modalidad/{id}/destroy',[
+		'uses' => 'modalidadesController@destroy',
+		'as' => 'modalidad.destroy'
+	]);
+	Route::get('modalidad/{id}/activar',[
+		'uses' => 'modalidadesController@activar',
+		'as' => 'modalidad.activar'
+	]);
+
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaDias extends Migration
+class AgregarTablaModalidades extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CrearTablaDias extends Migration
      */
     public function up()
     {
-        Schema::create('dias', function (Blueprint $table) {
+        Schema::create('modalidades', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('dia')->unique();
-            $table->string('dia_ingles');
-            $table->integer('numero_dia');
+            $table->string('modalidad');
             $table->double('costo', 10, 2);
+            $table->string('detalles',1000);
+            $table->string('tipo_modalidad');
 
             $table->boolean('alive')->default(true);
 
@@ -34,6 +34,6 @@ class CrearTablaDias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dias');
+        Schema::dropIfExists('modalidades');
     }
 }

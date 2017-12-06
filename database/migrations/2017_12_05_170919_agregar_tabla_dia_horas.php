@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaDias extends Migration
+class AgregarTablaDiaHoras extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CrearTablaDias extends Migration
      */
     public function up()
     {
-        Schema::create('dias', function (Blueprint $table) {
+        Schema::create('dia_horas', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('dia')->unique();
-            $table->string('dia_ingles');
-            $table->integer('numero_dia');
+            $table->integer('dia_id')->unsigned();
+            $table->foreign('dia_id')->references('id')->on('dias');
+
+            $table->string('hora');
             $table->double('costo', 10, 2);
 
             $table->boolean('alive')->default(true);
@@ -34,6 +35,6 @@ class CrearTablaDias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dias');
+        Schema::dropIfExists('dia_horas');
     }
 }

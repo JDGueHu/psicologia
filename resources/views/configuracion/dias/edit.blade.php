@@ -4,10 +4,11 @@
 
 <ol class="breadcrumb">
   <li><a href="{{ route('dias.index') }}"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp Días</a></li>
-  <li class="active">Crear</li>
+  <li class="active">Editar</li>
 </ol>
 
-{!! Form::open(['route' => 'dias.store', 'method' => 'POST']) !!} 
+{!! Form::model($dia,['route' => ['dias.update',$dia->id], 'method' => 'PUT']) !!}
+
 
 {!! Form::submit('Guardar',['class' => 'btn btn-primary separarTop separarBottom'])  !!}
 <a style="text-decoration: none;" href="{{ route('dias.index') }}">
@@ -20,9 +21,9 @@
     <div class="panel-body">
 
         <div class="row">   
-            <div class="col-md-4 separarBottom">
+            <div class="col-md-6 separarBottom">
                 {!! Form::label('dia','Día')  !!}
-                {!! Form::text('dia',null, ['class' => 'form-control mayusculas', 'id'=>'dia','required'])  !!}
+                {!! Form::text('dia',$dia->dia, ['class' => 'form-control mayusculas', 'id'=>'dia','required'])  !!}
 
                 @if ($errors->has('dia'))
                     <span style="color: red" class="help-block">
@@ -30,23 +31,29 @@
                     </span>
                 @endif
             </div>
-            <div class="col-md-4 separarBottom">
+            <div class="col-md-6 separarBottom">
                 {!! Form::label('dia_ingles','Día en ingles')  !!}
-                {!! Form::text('dia_ingles',null, ['class' => 'form-control', 'id'=>'dia_ingles','required'])  !!}
+                {!! Form::text('dia_ingles',$dia->dia_ingles, ['class' => 'form-control', 'id'=>'dia_ingles','required'])  !!}
             </div>
-            <div class="col-md-4 separarBottom">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 separarBottom">
                 {!! Form::label('numero_dia','Número del día en la semana')  !!}
-                {!! Form::number('numero_dia',null, ['class' => 'form-control', 'required', 'id'=>'numero_dia'])  !!}
+                {!! Form::number('numero_dia',$dia->numero_dia, ['class' => 'form-control', 'required', 'id'=>'numero_dia'])  !!}
+            </div>
+            <div class="col-md-6 separarBottom">
+                {!! Form::label('costo','Costo')  !!}
+                {!! Form::number('costo',$dia->costo, ['class' => 'form-control', 'required', 'id'=>'costo'])  !!}
             </div>
         </div>
 
     </div>
 </div>
 
-
-{!! Form::submit('Guardar',['class' => 'btn btn-primary separarTop separarBottomButtonn'])  !!}
+{!! Form::submit('Guardar',['class' => 'btn btn-primary separarTop separarBottom'])  !!}
 <a style="text-decoration: none;" href="{{ route('dias.index') }}">
-    {!! Form::button('Regresar',['class' => 'btn btn-default separarTop separarBottomButtonn'])  !!}
+    {!! Form::button('Regresar',['class' => 'btn btn-default  separarBottomButtonn'])  !!}
 </a>
 
 {!! Form::close() !!}

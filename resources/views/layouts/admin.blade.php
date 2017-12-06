@@ -20,6 +20,8 @@
 <link href="{{ asset('dataTable/css/buttons.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ asset('jquery_confirm/css/jquery-confirm.css') }}" rel="stylesheet">
 
+<link href="{{ asset('chosen/chosen.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -58,6 +60,7 @@
 <script src="{{ asset('dataTable/js/buttons.print.min.js') }}"></script>
 
 <script src="{{ asset('jquery_confirm/js/jquery-confirm.min.js') }}"></script>
+<script src="{{ asset('chosen/chosen.jquery.js') }}"></script>
 
 <!-- Vendor Scripts -->
 <script src="{{ asset('js/modernizr.custom.js') }}"></script> 

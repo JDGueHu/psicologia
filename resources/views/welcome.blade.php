@@ -390,15 +390,15 @@
               </select>
             </div> 
             <div class="col-md-4">    
-              <label for="sandbox">Seleccionar el canal de contacto virtual</label>           
+              <label for="sandbox">Seleccionar medio virtual</label>           
               <select class="form-control" style="padding: 0px">
                 <option>Skype</option>                  
                 <option>Hangouts</option>
               </select>
             </div>    
              <div class="col-md-4">    
-              <label for="">Ingresa el nombre de usuario</label>           
-              <input type="text" class="form-control">
+              <label for="">Usuario para contacto</label>
+              <input type="text" class="form-control" />
             </div>           
           </div>
           <div class="row">
@@ -412,16 +412,31 @@
           </div>
           <div class="row">
             <div class="col-md-4"> 
-              <label class="checkbox-inline"><input type="checkbox" value="">Usar otra dirección</label>             
+              <label class="checkbox-inline">Mi dirección</label>                     
+              {!! Form::radio('direccion', 'mi_direccion', false, ['class' => 'form-control']) !!}            
             </div>  
             <div class="col-md-4"> 
              <label for="">Ciudad</label>           
-             <input type="text" class="form-control">             
+             {!! Form::text('ciudad_user',null, ['class' => 'form-control', 'id'=>'ciudad_user', 'readonly'])  !!}           
             </div>  
             <div class="col-md-4"> 
              <label for="">Direccion</label>           
-             <textarea class="form-control"></textarea>            
+             {!! Form::textarea('direccion_user',null, ['class' => 'form-control', 'id'=>'direccion_user','size' => '30x2', 'readonly'])  !!}           
             </div>              
+          </div> 
+          <div class="row">
+            <div class="col-md-4"> 
+              <label class="checkbox-inline">Otra dirección</label>                     
+              {!! Form::radio('direccion', 'otra_direccion', false, ['class' => 'form-control']) !!}            
+            </div>  
+            <div class="col-md-4"> 
+             <label for="">Ciudad</label>           
+             {!! Form::text('ciudad',null, ['class' => 'form-control', 'id'=>'ciudad')  !!}           
+            </div>  
+            <div class="col-md-4"> 
+             <label for="">Direccion</label>           
+             {!! Form::textarea('direccion',null, ['class' => 'form-control', 'id'=>'direccion','size' => '30x2'])  !!}           
+            </div>           
           </div>          
           <!-- PARA EL PASO 3 -->
           <div class="col-md-12">

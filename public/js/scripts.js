@@ -13,7 +13,7 @@ $(document).ready(function() {
 
       $('#sandbox').datepicker({
 	      autoclose: true,
-	      //daysOfWeekDisabled: "0",
+	      daysOfWeekDisabled: "0",
 	    });
 
       $('#basicExample').timepicker({

@@ -26,7 +26,8 @@
           </a>
           <ul class="dropdown-menu">
             <!--li role="separator" class="divider"></li-->
-              <li><a href="{{ route('dias.index') }}"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp Días </a></li>       
+              <li><a href="{{ route('dias.index') }}"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp Días </a></li>
+              <li><a href="{{ route('modalidad.index') }}"><i class="fa fa-server" aria-hidden="true"></i> &nbsp Modalidades </a></li>       
           </ul>
         </li>
       </ul>   
