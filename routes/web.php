@@ -24,11 +24,6 @@ Route::post('registrarseStore',[
 	'as' => 'registrarseStore'
 ]);
 
-Route::post('consultar_dias',[
-	'uses' => 'disponibilidadController@consultar_dias',
-	'as' => 'centroTrabajo.consultar_dias'
-]);
-
 
 Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 
@@ -52,6 +47,18 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 	Route::get('dias/{id}/desvincular_horas',[
 		'uses' => 'diasController@desvincular_horas',
 		'as' => 'dias.desvincular_horas'
+	]);
+	Route::post('dias/consultar_dias',[
+		'uses' => 'diasController@consultar_dias',
+		'as' => 'dias.consultar_dias'
+	]);
+	Route::post('dias/consultar_horas_dia',[
+		'uses' => 'diasController@consultar_horas_dia',
+		'as' => 'dias.consultar_horas_dia'
+	]);
+	Route::post('dias/consultar_disponibilidad',[
+		'uses' => 'diasController@consultar_disponibilidad',
+		'as' => 'dias.consultar_disponibilidad'
 	]);
 
 	Route::resource('modalidad','modalidadesController');

@@ -14,7 +14,6 @@
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('fonts/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 <link href="{{ asset('date_picker_jquery/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-<link href="{{ asset('timepicker_jquery/jquery.timepicker.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -96,7 +95,6 @@
 <script src="{{ asset('js/jquery.fancybox-media.js') }}"></script> 
 <script src="{{ asset('js/jquery.flexslider.js') }}"></script> 
 <script src="{{ asset('js/animate.js') }}"></script> 
-<script src="{{ asset('timepicker_jquery/jquery.timepicker.min.js') }}"></script> 
 
 <!-- Vendor Scripts -->
 <script src="{{ asset('js/modernizr.custom.js') }}"></script> 

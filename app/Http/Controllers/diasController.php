@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Dia;
 use App\Dia_Horas;
+use App\Cita;
 
 class diasController extends Controller
 {
@@ -147,7 +148,6 @@ class diasController extends Controller
     {
         $dia = Dia::find($id);
         $horas = [
-            '5:00am'=>'5:00am',
             '6:00am'=>'6:00am',
             '7:00am'=>'7:00am',
             '8:00am'=>'8:00am',
@@ -186,10 +186,12 @@ class diasController extends Controller
         foreach ($request->horas as $value) {
 
             $dia_horas = new Dia_Horas();
+            $dia = Dia::find($request->dia_id);
 
             $dia_horas->dia_id = $request->dia_id;
             $dia_horas->hora = $value;
             $dia_horas->costo = $request->costo;
+            $dia_horas->numero_dia = $dia->numero_dia;
             $dia_horas->save();
         }
 
@@ -206,5 +208,40 @@ class diasController extends Controller
 
         flash('Se desvincularon las horas para servicio en el día <b>'.$dia->dia.'</b> exitosamente', 'danger')->important();
         return redirect()->route('dias.index');
+    }
+
+    public function consultar_dias(Request $request)
+    {   
+        if($request->ajax()){   
+
+            $dias = Dia::where('alive', true)->get();
+
+            return response($dias);
+        }
+    }
+
+    public function consultar_horas_dia(Request $request)
+    {   
+        if($request->ajax()){   
+
+            $horas_dia = Dia_Horas::where('alive', true)
+                ->where('numero_dia', '=', $request->numero_dia)
+                ->get();
+
+            return response($horas_dia);
+        }
+    }
+
+    public function consultar_disponibilidad(Request $request)
+    {   
+        if($request->ajax()){   
+
+            $disponibilidad = Cita::where('alive', true)
+                ->where('fecha', '=', $request->fecha)
+                ->where('hora', '=', $request->hora)
+                ->get();
+
+            return response($disponibilidad);
+        }
     }
 }

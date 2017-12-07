@@ -333,127 +333,134 @@
         <h3 class="modal-title">APARTAR TU CITA</h3>
       </div>
       <div class="modal-body">
-
-          <div class="row">
-            <div class="col-md-12">              
-              <span style="font-size: 16px"><b style="color: blue">Paso 1:</b> &nbsp Consulta la disponibilidad &nbsp</span>
-              <i class="fa fa-clock-o fa-2x" style="color: blue" aria-hidden="true"></i>
-            </div>              
-          </div>
-
-          <!-- PARA EL PASO 1 -->
-          <div class="row">
-            <div class="col-md-4"> 
-              <label for="sandbox">Fecha</label>             
-              <input id="sandbox" type="text" class="form-control">
-            </div>    
-            <div class="col-md-4">  
-              <label for="basicExample">Hora</label>            
-              <input id="basicExample" type="text" class="form-control">
+           <!-- PARA EL PASO 1 -->
+          <section id="paso_1"> 
+            <div class="row">
+              <div class="col-md-12">              
+                <span style="font-size: 16px"><b style="color: blue">Paso 1:</b> &nbsp Consulta la disponibilidad &nbsp</span>
+                <i class="fa fa-clock-o fa-2x" style="color: blue" aria-hidden="true"></i>
+              </div>              
             </div>   
-            <div class="col-md-2">   
-              <label><span style="color: #ffffff">__</span></label>           
-              <button type="button" style="padding: 2px 12px" class="btn btn-default form-control" data-dismiss="modal">Consultar</button>
-            </div>           
-          </div>
-          <div class="row">
-            <div class="col-md-1 centrar_texto">
-              <img src="img/pulgar_arriba.jpg" class="imagen" />
+            <div class="row">
+              <div class="col-md-4"> 
+                <label for="sandbox">Fecha</label>             
+                <input id="sandbox" type="text" class="form-control">
+                <label id="fecha_requerida" class="visible color_requerido">Campo requerido</label>
+              </div>    
+              <div class="col-md-4">  
+                <label for="basicExample">Hora</label>    
+                <select class="form-control" id="horas" style="padding: 0px">                
+                </select>   
+                <label id="hora_requerida" class="visible color_requerido">Campo requerido</label>     
+              </div>   
+              <div class="col-md-2">   
+                <label><span style="color: #ffffff">__</span></label>           
+                <button type="button" style="padding: 2px 12px" class="btn btn-default form-control" id="consultar">Consultar</button>
+              </div>           
             </div>
-            <div class="col-md-11">
-              <p>Que bien! Hay disponibilidad para la fecha y hora en la que solicitas tu cita.</p>
-            </div>  
-          </div>
-          <div class="row">
-            <div class="col-md-1 centrar_texto">
-              <img src="img/lo_siento.jpg" class="imagen" />
+            <div class="row visible" id="disponible">
+              <div class="col-md-1 centrar_texto">
+                <img src="img/pulgar_arriba.jpg" class="imagen" />
+              </div>
+              <div class="col-md-11">
+                <p class="texto_disponibilidad">Que bien! Hay disponibilidad para la fecha y hora en la que solicitas tu cita.</p>
+              </div>  
             </div>
-            <div class="col-md-11">
-              <p>Lo siento! No hay disponibilidad para la fecha y hora en la que solicitas tu cita, inténtalo de nuevo en otra fecha u hora.</p>
-            </div>  
-          </div>
+            <div class="row visible" id="no_disponible">
+              <div class="col-md-1 centrar_texto">
+                <img src="img/lo_siento.jpg" class="imagen" />
+              </div>
+              <div class="col-md-11">
+                <p>Lo siento! No hay disponibilidad para la fecha y hora en la que solicitas tu cita, inténtalo de nuevo en otra fecha u hora.</p>
+              </div>  
+            </div>
+          </section>
 
           <!-- PARA EL PASO 2 -->
-          <div class="row">
-            <div class="col-md-12">
-              <span style="font-size: 16px"><b style="color: #8904B1">Paso 2:</b> &nbsp Indica las preferencias para tu cita &nbsp</span>
-              <i class="fa fa-id-card-o fa-2x" style="color: #8904B1" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">    
-              <label for="sandbox">Seleccionar la modadlidad de la cita</label>           
-              <select class="form-control" style="padding: 0px">
-                <option>Consultorio</option>                  
-                <option>Virtual</option>
-                <option>Visita</option>
-              </select>
-            </div> 
-            <div class="col-md-4">    
-              <label for="sandbox">Seleccionar medio virtual</label>           
-              <select class="form-control" style="padding: 0px">
-                <option>Skype</option>                  
-                <option>Hangouts</option>
-              </select>
-            </div>    
-             <div class="col-md-4">    
-              <label for="">Usuario para contacto</label>
-              <input type="text" class="form-control" />
-            </div>           
-          </div>
-          <div class="row">
-            <div class="col-md-12">              
-              <p>Modalidad Consultorio: Recuerda presentarte 10 min antes de la hora inicio de la cita en la dirección XXX.</p>
-              <p>Modalidad Virtual: El usuario de contacto que atenderá tu cita es xxx, por favor conéctate 5 min antes de la hora de inicio de la cita.</p>
-            </div>  
-            <div class="col-md-12">              
-              <p>Modalidad Visita: Recuerda que las visitas solo está disponibles para las ciudades de Pereira y Dosquebradas. Esta es la dirección en la que se realizará la consulta xxx, es la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección </p>
-            </div>               
-          </div>
-          <div class="row">
-            <div class="col-md-4"> 
-              <label class="checkbox-inline">Mi dirección</label>                     
-              {!! Form::radio('direccion', 'mi_direccion', false, ['class' => 'form-control']) !!}            
-            </div>  
-            <div class="col-md-4"> 
-             <label for="">Ciudad</label>           
-             {!! Form::text('ciudad_user',null, ['class' => 'form-control', 'id'=>'ciudad_user', 'readonly'])  !!}           
-            </div>  
-            <div class="col-md-4"> 
-             <label for="">Direccion</label>           
-             {!! Form::textarea('direccion_user',null, ['class' => 'form-control', 'id'=>'direccion_user','size' => '30x2', 'readonly'])  !!}           
-            </div>              
-          </div> 
-          <div class="row">
-            <div class="col-md-4"> 
-              <label class="checkbox-inline">Otra dirección</label>                     
-              {!! Form::radio('direccion', 'otra_direccion', false, ['class' => 'form-control']) !!}            
-            </div>  
-            <div class="col-md-4"> 
-             <label for="">Ciudad</label>           
-             {!! Form::text('ciudad',null, ['class' => 'form-control', 'id'=>'ciudad')  !!}           
-            </div>  
-            <div class="col-md-4"> 
-             <label for="">Direccion</label>           
-             {!! Form::textarea('direccion',null, ['class' => 'form-control', 'id'=>'direccion','size' => '30x2'])  !!}           
-            </div>           
-          </div>          
-          <!-- PARA EL PASO 3 -->
-          <div class="col-md-12">
+          <section id="paso_2" class="visible">          
             <div class="row">
-              <span style="font-size: 16px"><b style="color: green">Paso 3:</b> &nbsp Obten tu cita &nbsp</span>
-              <i class="fa fa-check fa-2x" style="color: green" aria-hidden="true"></i>
+              <div class="col-md-12">
+                <span style="font-size: 16px"><b style="color: #8904B1">Paso 2:</b> &nbsp Indica las preferencias para tu cita &nbsp</span>
+                <i class="fa fa-id-card-o fa-2x" style="color: #8904B1" aria-hidden="true"></i>
+              </div>
             </div>
-          </div>    
-          <div class="row">
-            <div class="col-md-12">              
-              <p>Antes de apartar tu cita POR FAVOR verifica los datos que has ingresado, si estas seguro de ellos has click en el boton Apartar cita para finalizar el proceso, una vez lo hagas, te llegará un email con los datos de la cita</p>
-              <p>Te llegará un email para confirmar la cita, si no la confirmas podrias perder la cita</p>
-            </div>                 
-          </div>        
+            <div class="row">
+              <div class="col-md-4">    
+                <label for="sandbox">Seleccionar la modadlidad de la cita</label>           
+                <select class="form-control" style="padding: 0px">
+                  <option>Consultorio</option>                  
+                  <option>Virtual</option>
+                  <option>Visita</option>
+                </select>
+              </div> 
+              <div class="col-md-4">    
+                <label for="sandbox">Seleccionar medio virtual</label>           
+                <select class="form-control" style="padding: 0px">
+                  <option>Skype</option>                  
+                  <option>Hangouts</option>
+                </select>
+              </div>    
+               <div class="col-md-4">    
+                <label for="">Usuario para contacto</label>
+                <input type="text" class="form-control" />
+              </div>           
+            </div>
+            <div class="row">
+              <div class="col-md-12">              
+                <p>Modalidad Consultorio: Recuerda presentarte 10 min antes de la hora inicio de la cita en la dirección XXX.</p>
+                <p>Modalidad Virtual: El usuario de contacto que atenderá tu cita es xxx, por favor conéctate 5 min antes de la hora de inicio de la cita.</p>
+              </div>  
+              <div class="col-md-12">              
+                <p>Modalidad Visita: Recuerda que las visitas solo está disponibles para las ciudades de Pereira y Dosquebradas. Esta es la dirección en la que se realizará la consulta xxx, es la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección </p>
+              </div>               
+            </div>
+            <div class="row">
+              <div class="col-md-4"> 
+                <label class="checkbox-inline">Mi dirección</label>                     
+                {!! Form::radio('direccion', 'mi_direccion', false, ['class' => 'form-control']) !!}            
+              </div>  
+              <div class="col-md-4"> 
+               <label for="">Ciudad</label>           
+               {!! Form::text('ciudad_user',null, ['class' => 'form-control', 'id'=>'ciudad_user', 'readonly'])  !!}           
+              </div>  
+              <div class="col-md-4"> 
+               <label for="">Direccion</label>           
+               {!! Form::textarea('direccion_user',null, ['class' => 'form-control', 'id'=>'direccion_user','size' => '30x2', 'readonly'])  !!}           
+              </div>              
+            </div> 
+            <div class="row">
+              <div class="col-md-4"> 
+                <label class="checkbox-inline">Otra dirección</label>                     
+                {!! Form::radio('direccion', 'otra_direccion', false, ['class' => 'form-control']) !!}            
+              </div>  
+              <div class="col-md-4"> 
+               <label for="">Ciudad</label>           
+               {!! Form::text('ciudad',null, ['class' => 'form-control', 'id'=>'ciudad'])  !!}           
+              </div>  
+              <div class="col-md-4"> 
+               <label for="">Direccion</label>           
+               {!! Form::textarea('direccion',null, ['class' => 'form-control', 'id'=>'direccion','size' => '30x2'])  !!}           
+              </div>           
+            </div> 
+          </section>         
+          <!-- PARA EL PASO 3 -->
+          <section id="paso_3" class="visible">
+            <div class="col-md-12">
+              <div class="row">
+                <span style="font-size: 16px"><b style="color: green">Paso 3:</b> &nbsp Obten tu cita &nbsp</span>
+                <i class="fa fa-check fa-2x" style="color: green" aria-hidden="true"></i>
+              </div>
+            </div>    
+            <div class="row">
+              <div class="col-md-12">              
+                <p>Antes de apartar tu cita POR FAVOR verifica los datos que has ingresado, si estas seguro de ellos has click en el boton Apartar cita para finalizar el proceso, una vez lo hagas, te llegará un email con los datos de la cita</p>
+                <p>Te llegará un email para confirmar la cita, si no la confirmas podrias perder la cita</p>
+              </div>                 
+            </div>
+          </section>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
     

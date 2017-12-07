@@ -21,6 +21,7 @@ class AgregarTablaDiaHoras extends Migration
 
             $table->string('hora');
             $table->double('costo', 10, 2);
+            $table->string('numero_dia');
 
             $table->boolean('alive')->default(true);
 

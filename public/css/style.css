@@ -1766,11 +1766,8 @@ padding-top: 3px;
 
 }
 
-.imagen{
-	width: 95%
-}
-
-.centrar_texto{
-	text-align: center;
-}
-
+.imagen{ width: 95% }
+.centrar_texto{	text-align: center;}
+.visible{ display: none;}
+.color_requerido{ color: red; }
+.texto_disponibilidad{ font-size: 18px; margin: 0px; margin-top: 10px}
