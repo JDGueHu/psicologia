@@ -37,6 +37,50 @@ $(document).ready(function() {
 
     });
 
+    //// CARGAR CIUDADES
+    $.ajax({
+      url: 'configuracion/ciudad_cita/consultar_ciudades',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      datatype:'json',
+      contentType: false,
+      cache: false,
+      processData: false,
+    }).done(function(response){
+
+        $("#ciudad option").remove();
+        $('#ciudad').append($('<option>', {
+          value: '',
+          text: ''
+        }));
+
+        response.forEach(function(element){
+          $('#ciudad').append($('<option>', {
+              value: element.ciudad,
+              text: element.ciudad
+          }));
+        });
+    });
+
+    //// CARGAR PARÁMETROS
+    $.ajax({
+      url: 'configuracion/parametro/consultar_parametros',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      datatype:'json',
+      contentType: false,
+      cache: false,
+      processData: false,
+    }).done(function(response){
+
+        response.forEach(function(element){
+          if(element.llave == "DIRECCION_CONSULTORIO"){
+            $('#direccion_consultorio').text(element.valor);
+          }
+        });
+
+    });
+
     //// VALIDAR INPUTS
     if($('#sandbox').val() == "" || $('#horas option:selected').text() == ""){
       $("#consultar").prop( "disabled", true );     
@@ -95,7 +139,7 @@ $(document).ready(function() {
 
     });
 
-    //// Consultar disponibilidad
+    //// CONSULTAR DISPONIBILIDAD
     $( "#consultar" ).click(function() {
 
       var form_data = new FormData();
@@ -115,17 +159,77 @@ $(document).ready(function() {
         console.log(response.length);
 
         if(response.length == 0){
-          $("#disponible").removeClass("visible").fadeIn();
-          $("#paso_2").removeClass("visible");
+          setTimeout(function () {
+            $("#disponible").fadeIn(1000);
+          }, 1000);
+          setTimeout(function () {
+            $("#paso_2").fadeIn(1000);
+          }, 1000);
           $("#no_disponible").addClass( "visible" );
+
         }else{
+          setTimeout(function () {
+            $("#no_disponible").fadeIn(1000);
+          }, 1000);
           $("#no_disponible").removeClass("visible");          
-          $("#disponible").addClass( "visible" );
+          $("#disponible").addClass("visible");
         }
 
       });
 
     })
-      
+
+    //// MOSTRAR CAMPO MEDIO VIRTUAL POR CAMBIO DE MODALIDAD
+    $('#modadlidad_cita').change(function() {
+
+      if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Consultorio"){
+
+        $("#medio_virtual").addClass("visible");
+
+        $("#modadlidad_consultorio").removeClass("visible");
+        $("#modadlidad_virtual").addClass("visible");
+        $("#modadlidad_visita").addClass("visible");
+        $("#modadlidad_visita_direccion").addClass("visible");
+
+      }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Virtual"){
+
+        $("#medio_virtual").removeClass("visible");  
+
+        $("#modadlidad_consultorio").addClass("visible");
+        $("#modadlidad_virtual").removeClass("visible");
+        $("#modadlidad_visita").addClass("visible");
+        $("#modadlidad_visita_direccion").addClass("visible");
+
+      }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Visita"){
+
+        $("#medio_virtual").addClass("visible");
+
+        $("#modadlidad_consultorio").addClass("visible");
+        $("#modadlidad_virtual").addClass("visible");
+        $("#modadlidad_visita").removeClass("visible");
+        $("#modadlidad_visita_direccion").removeClass("visible");
+
+      }else{
+        $("#medio_virtual").addClass("visible");
+      }   
+
+      setTimeout(function () {
+        $("#paso_3").fadeIn(1000);
+      }, 1000);   
+
+    });
+ 
+     //// MOSTRAR CAMPO USUARIO POR CAMBIO DE MEDIO VIRTUAL
+    $('#medio_virtual_cita').change(function() {
+
+      if($('#medio_virtual_cita').val() != ""){
+
+        $('#nombre_usuario_medio_virtual').text($('#medio_virtual_cita option:selected').text());
+        $("#usuario_medio_virtual").removeClass("visible");  
+      }else{
+        $("#usuario_medio_virtual").addClass("visible");
+      }      
+
+    });     
 
 })

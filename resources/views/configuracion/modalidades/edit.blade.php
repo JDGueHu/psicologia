@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb">
   <li><a href="{{ route('modalidad.index') }}"><i class="fa fa-server" aria-hidden="true"></i> &nbsp Modalidades</a></li>
-  <li class="active">Detalles</li>
+  <li class="active">Editar</li>
 </ol>
 
 {!! Form::model($modalidad,['route' => ['modalidad.update',$modalidad->id], 'method' => 'PUT']) !!}

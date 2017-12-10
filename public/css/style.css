@@ -1770,4 +1770,5 @@ padding-top: 3px;
 .centrar_texto{	text-align: center;}
 .visible{ display: none;}
 .color_requerido{ color: red; }
-.texto_disponibilidad{ font-size: 18px; margin: 0px; margin-top: 10px}
+.texto_disponibilidad{ font-size: 18px; margin: 0px; margin-top: 12px}
+.resaltar{ font-weight: bold; }

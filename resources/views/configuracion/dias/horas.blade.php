@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb">
   <li><a href="{{ route('dias.index') }}"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp Días</a></li>
-  <li class="active">Crear</li>
+  <li class="active">Asignar horas</li>
 </ol>
 
 {!! Form::open(['route' => 'dias.asociar_horas_store', 'method' => 'POST']) !!} 

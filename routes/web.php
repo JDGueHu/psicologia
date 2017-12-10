@@ -71,4 +71,31 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'as' => 'modalidad.activar'
 	]);
 
+	Route::resource('ciudad_cita','ciudadesCitaController');
+	Route::get('ciudad_cita/{id}/destroy',[
+		'uses' => 'ciudadesCitaController@destroy',
+		'as' => 'ciudad_cita.destroy'
+	]);
+	Route::get('ciudad_cita/{id}/activar',[
+		'uses' => 'ciudadesCitaController@activar',
+		'as' => 'ciudad_cita.activar'
+	]);
+	Route::post('ciudad_cita/consultar_ciudades',[
+		'uses' => 'ciudadesCitaController@consultar_ciudades',
+		'as' => 'ciudad_cita.consultar_ciudades'
+	]);
+
+	Route::resource('parametro','parametrosController');
+	Route::get('parametro/{id}/destroy',[
+		'uses' => 'parametrosController@destroy',
+		'as' => 'parametro.destroy'
+	]);
+	Route::get('parametro/{id}/activar',[
+		'uses' => 'parametrosController@activar',
+		'as' => 'parametro.activar'
+	]);
+	Route::post('parametro/consultar_parametros',[
+		'uses' => 'parametrosController@consultar_parametros',
+		'as' => 'parametro.consultar_parametros'
+	]);
 });

@@ -323,7 +323,7 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade pac_container" id="myModal" role="dialog">
   <div class="modal-dialog">
   
     <!-- Modal content-->
@@ -348,7 +348,7 @@
                 <label id="fecha_requerida" class="visible color_requerido">Campo requerido</label>
               </div>    
               <div class="col-md-4">  
-                <label for="basicExample">Hora</label>    
+                <label for="horas">Hora</label>    
                 <select class="form-control" id="horas" style="padding: 0px">                
                 </select>   
                 <label id="hora_requerida" class="visible color_requerido">Campo requerido</label>     
@@ -363,7 +363,7 @@
                 <img src="img/pulgar_arriba.jpg" class="imagen" />
               </div>
               <div class="col-md-11">
-                <p class="texto_disponibilidad">Que bien! Hay disponibilidad para la fecha y hora en la que solicitas tu cita.</p>
+                <p class="texto_disponibilidad">Que bien! Hay disponibilidad para la fecha y hora en la que requieres tu cita.</p>
               </div>  
             </div>
             <div class="row visible" id="no_disponible">
@@ -371,7 +371,7 @@
                 <img src="img/lo_siento.jpg" class="imagen" />
               </div>
               <div class="col-md-11">
-                <p>Lo siento! No hay disponibilidad para la fecha y hora en la que solicitas tu cita, inténtalo de nuevo en otra fecha u hora.</p>
+                <p>Lo siento! No hay disponibilidad para la fecha y hora en la que requieres tu cita, inténtalo de nuevo en otra fecha u hora.</p>
               </div>  
             </div>
           </section>
@@ -386,62 +386,67 @@
             </div>
             <div class="row">
               <div class="col-md-4">    
-                <label for="sandbox">Seleccionar la modadlidad de la cita</label>           
-                <select class="form-control" style="padding: 0px">
-                  <option>Consultorio</option>                  
-                  <option>Virtual</option>
-                  <option>Visita</option>
+                <label for="modadlidad_cita">Modadlidad de la cita</label>           
+                <select id="modadlidad_cita" class="form-control" style="padding: 0px">
+                  <option value=""></option>
+                  <option value="Consultorio">Consultorio</option>                  
+                  <option value="Virtual">Virtual</option>
+                  <option value="Visita">Visita</option>
                 </select>
               </div> 
-              <div class="col-md-4">    
-                <label for="sandbox">Seleccionar medio virtual</label>           
-                <select class="form-control" style="padding: 0px">
-                  <option>Skype</option>                  
-                  <option>Hangouts</option>
+              <div class="col-md-4 visible" id="medio_virtual">    
+                <label for="medio_virtual_cita">Medio virtual</label>           
+                <select id="medio_virtual_cita" class="form-control" style="padding: 0px">
+                  <option value=""></option>
+                  <option value="Skype">Skype</option>                  
+                  <option value="Hangouts">Hangouts</option>
                 </select>
               </div>    
-               <div class="col-md-4">    
-                <label for="">Usuario para contacto</label>
+               <div class="col-md-4 visible" id="usuario_medio_virtual">    
+                <label for="">Nombre de usuario en <span id="nombre_usuario_medio_virtual"></span></label>
                 <input type="text" class="form-control" />
               </div>           
             </div>
             <div class="row">
               <div class="col-md-12">              
-                <p>Modalidad Consultorio: Recuerda presentarte 10 min antes de la hora inicio de la cita en la dirección XXX.</p>
-                <p>Modalidad Virtual: El usuario de contacto que atenderá tu cita es xxx, por favor conéctate 5 min antes de la hora de inicio de la cita.</p>
+                <p id="modadlidad_consultorio" class="visible">Modalidad Consultorio: Recuerda presentarte 10 min antes de la hora inicio de la cita en la dirección <span class="resaltar" id="direccion_consultorio"></span>.</p>
+                <p id="modadlidad_virtual" class="visible">Modalidad Virtual: El usuario de contacto que te atenderá en Skype es XXX y para Hangouts es xxx, por favor conéctate 5 min antes de la hora de inicio de la cita.</p>
               </div>  
               <div class="col-md-12">              
-                <p>Modalidad Visita: Recuerda que las visitas solo está disponibles para las ciudades de Pereira y Dosquebradas. Esta es la dirección en la que se realizará la consulta xxx, es la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección </p>
+                <p id="modadlidad_visita" class="visible">Modalidad Visita: La dirección marcada corresponde a la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección. Esta modalidad solo está disponible para algunas ciudades en específico. </p>
               </div>               
             </div>
-            <div class="row">
-              <div class="col-md-4"> 
-                <label class="checkbox-inline">Mi dirección</label>                     
-                {!! Form::radio('direccion', 'mi_direccion', false, ['class' => 'form-control']) !!}            
-              </div>  
-              <div class="col-md-4"> 
-               <label for="">Ciudad</label>           
-               {!! Form::text('ciudad_user',null, ['class' => 'form-control', 'id'=>'ciudad_user', 'readonly'])  !!}           
-              </div>  
-              <div class="col-md-4"> 
-               <label for="">Direccion</label>           
-               {!! Form::textarea('direccion_user',null, ['class' => 'form-control', 'id'=>'direccion_user','size' => '30x2', 'readonly'])  !!}           
-              </div>              
+            <div id="modadlidad_visita_direccion" class="visible">
+              <div class="row">
+                <div class="col-md-4"> 
+                  <label class="checkbox-inline">Mi dirección</label>                     
+                  {!! Form::radio('direccion', 'mi_direccion', true, ['class' => 'form-control']) !!}            
+                </div>  
+                <div class="col-md-4"> 
+                 <label for="">Ciudad</label>           
+                 {!! Form::text('ciudad_user',null, ['class' => 'form-control', 'id'=>'ciudad_user', 'readonly'])  !!}           
+                </div>  
+                <div class="col-md-4"> 
+                 <label for="">Direccion</label>           
+                 {!! Form::textarea('direccion_user',null, ['class' => 'form-control', 'id'=>'direccion_user','size' => '30x2', 'readonly'])  !!}           
+                </div>              
+              </div> 
+              <div class="row">
+                <div class="col-md-4"> 
+                  <label for="otra_direccion" class="checkbox-inline">Otra dirección</label>                     
+                  {!! Form::radio('direccion', 'otra_direccion', false, ['class' => 'form-control']) !!}            
+                </div>  
+                <div class="col-md-4"> 
+                 <label for="ciudad">Ciudad</label>           
+                <select class="form-control" id="ciudad" style="padding: 0px">                
+                </select>          
+                </div>  
+                <div class="col-md-4"> 
+                 <label for="direccion_completa">Direccion</label>           
+                 {!! Form::textarea('direccion_completa',null, ['class' => 'form-control', 'id'=>'direccion_completa','size' => '30x2'])  !!}           
+                </div>           
             </div> 
-            <div class="row">
-              <div class="col-md-4"> 
-                <label class="checkbox-inline">Otra dirección</label>                     
-                {!! Form::radio('direccion', 'otra_direccion', false, ['class' => 'form-control']) !!}            
-              </div>  
-              <div class="col-md-4"> 
-               <label for="">Ciudad</label>           
-               {!! Form::text('ciudad',null, ['class' => 'form-control', 'id'=>'ciudad'])  !!}           
-              </div>  
-              <div class="col-md-4"> 
-               <label for="">Direccion</label>           
-               {!! Form::textarea('direccion',null, ['class' => 'form-control', 'id'=>'direccion','size' => '30x2'])  !!}           
-              </div>           
-            </div> 
+            </div>
           </section>         
           <!-- PARA EL PASO 3 -->
           <section id="paso_3" class="visible">
@@ -469,10 +474,5 @@
 @endsection
 
 @section('script')
-
-<script type="text/javascript">
-
-</script>
-
 
 @endsection
