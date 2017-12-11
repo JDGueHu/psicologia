@@ -404,7 +404,7 @@
               </div>    
                <div class="col-md-4 visible" id="usuario_medio_virtual">    
                 <label for="">Nombre de usuario en <span id="nombre_usuario_medio_virtual"></span></label>
-                <input type="text" class="form-control" />
+                <input type="text" class="form-control" id="input_nombre_usuario" />
               </div>           
             </div>
             <div class="row">
@@ -413,14 +413,14 @@
                 <p id="modadlidad_virtual" class="visible">Modalidad Virtual: El usuario de contacto que te atenderá en Skype es XXX y para Hangouts es xxx, por favor conéctate 5 min antes de la hora de inicio de la cita.</p>
               </div>  
               <div class="col-md-12">              
-                <p id="modadlidad_visita" class="visible">Modalidad Visita: La dirección marcada corresponde a la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección. Esta modalidad solo está disponible para algunas ciudades en específico. </p>
+                <p id="modadlidad_visita" class="visible">Modalidad Visita: La dirección marcada corresponde a la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección.</p>
               </div>               
             </div>
             <div id="modadlidad_visita_direccion" class="visible">
               <div class="row">
                 <div class="col-md-4"> 
                   <label class="checkbox-inline">Mi dirección</label>                     
-                  {!! Form::radio('direccion', 'mi_direccion', true, ['class' => 'form-control']) !!}            
+                  {!! Form::radio('direccion', 'mi_direccion', false, ['class' => 'form-control']) !!}            
                 </div>  
                 <div class="col-md-4"> 
                  <label for="">Ciudad</label>           

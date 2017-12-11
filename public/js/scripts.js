@@ -81,12 +81,32 @@ $(document).ready(function() {
 
     });
 
+    //// VALIDAC CIUDAD DE USUARIO LOGUEADO PARA MODALIDAD VISITA
+    $.ajax({
+      url: 'configuracion/ciudad_cita/validad_ciudad_usuario_logueado',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      datatype:'json',
+      contentType: false,
+      cache: false,
+      processData: false,
+    }).done(function(response){
+
+      if(response.length>0){
+        $('input[value="mi_direccion"]').prop( "checked", true );
+        $('#ciudad_user').val(response[0].ciudad);
+        $('#direccion_user').val(response[0].direccion);
+      }
+
+    });
+
     //// VALIDAR INPUTS
     if($('#sandbox').val() == "" || $('#horas option:selected').text() == ""){
       $("#consultar").prop( "disabled", true );     
     }else{
       $("#consultar").prop( "disabled", false );   
-    }    
+    } 
+
     $.fn.validar_inputs = function() {
 
       if($('#sandbox').val() == "" || $('#horas option:selected').text() == ""){
@@ -156,7 +176,7 @@ $(document).ready(function() {
         processData: false,
         data : form_data
       }).done(function(response){
-        console.log(response.length);
+       //console.log(response.length);
 
         if(response.length == 0){
           setTimeout(function () {
@@ -179,12 +199,23 @@ $(document).ready(function() {
 
     })
 
+
+    $.fn.limpiar_x_cambio = function() {
+        // Ocultar los campos de opción Virtual
+        $("#medio_virtual").addClass("visible");
+        $("#usuario_medio_virtual").addClass("visible");
+        $('#medio_virtual_cita').val('');
+        $('#input_nombre_usuario').val('');
+
+
+    }
+
     //// MOSTRAR CAMPO MEDIO VIRTUAL POR CAMBIO DE MODALIDAD
     $('#modadlidad_cita').change(function() {
 
       if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Consultorio"){
 
-        $("#medio_virtual").addClass("visible");
+        $.fn.limpiar_x_cambio();
 
         $("#modadlidad_consultorio").removeClass("visible");
         $("#modadlidad_virtual").addClass("visible");
@@ -202,7 +233,7 @@ $(document).ready(function() {
 
       }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Visita"){
 
-        $("#medio_virtual").addClass("visible");
+        $.fn.limpiar_x_cambio();
 
         $("#modadlidad_consultorio").addClass("visible");
         $("#modadlidad_virtual").addClass("visible");

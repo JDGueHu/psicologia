@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\CiudadCita;
+use App\User;
+
 
 class ciudadesCitaController extends Controller
 {
@@ -142,6 +144,19 @@ class ciudadesCitaController extends Controller
             $ciudades = CiudadCita::where('alive', true)->get();
 
             return response($ciudades);
+        }
+    }
+
+    public function validad_ciudad_usuario_logueado(Request $request)
+    {   
+
+        if($request->ajax()){
+
+            $ciudad = CiudadCita::where('ciudad','=',\Auth::user()->ciudad)->get(); 
+
+            $user = User::where('email','=',\Auth::user()->email)->get(); 
+
+            return response($user);
         }
     }
 }

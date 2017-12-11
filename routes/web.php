@@ -84,6 +84,10 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'uses' => 'ciudadesCitaController@consultar_ciudades',
 		'as' => 'ciudad_cita.consultar_ciudades'
 	]);
+	Route::post('ciudad_cita/validad_ciudad_usuario_logueado',[
+		'uses' => 'ciudadesCitaController@validad_ciudad_usuario_logueado',
+		'as' => 'ciudad_cita.validad_ciudad_usuario_logueado'
+	]);
 
 	Route::resource('parametro','parametrosController');
 	Route::get('parametro/{id}/destroy',[
