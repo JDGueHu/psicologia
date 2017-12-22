@@ -417,6 +417,11 @@
               </div>               
             </div>
             <div id="modadlidad_visita_direccion" class="visible">
+              <div class="row visible" id="ciudad_user_no_valida">
+                <div class="col-md-12">              
+                  <p style="color: red">La ciudad registrada en el perfil de usuario no es vállida para la modalidad de visita, por favor seleccione una de las ciudades permitida en la opción <span style="font-weight: bold">Otra dirección</span></p>
+                </div>                
+              </div>
               <div class="row">
                 <div class="col-md-4"> 
                   <label class="checkbox-inline">Mi dirección</label>                     

@@ -84,9 +84,13 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'uses' => 'ciudadesCitaController@consultar_ciudades',
 		'as' => 'ciudad_cita.consultar_ciudades'
 	]);
-	Route::post('ciudad_cita/validad_ciudad_usuario_logueado',[
-		'uses' => 'ciudadesCitaController@validad_ciudad_usuario_logueado',
-		'as' => 'ciudad_cita.validad_ciudad_usuario_logueado'
+	Route::post('ciudad_cita/ciudad_usuario_logueado',[
+		'uses' => 'ciudadesCitaController@ciudad_usuario_logueado',
+		'as' => 'ciudad_cita.ciudad_usuario_logueado'
+	]);
+	Route::post('ciudad_cita/validar_ciudad_usuario_logueado',[
+		'uses' => 'ciudadesCitaController@validar_ciudad_usuario_logueado',
+		'as' => 'ciudad_cita.validar_ciudad_usuario_logueado'
 	]);
 
 	Route::resource('parametro','parametrosController');

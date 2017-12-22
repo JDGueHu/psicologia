@@ -81,9 +81,9 @@ $(document).ready(function() {
 
     });
 
-    //// VALIDAC CIUDAD DE USUARIO LOGUEADO PARA MODALIDAD VISITA
+    //// DATOS DE USUARIO LOGUEADO
     $.ajax({
-      url: 'configuracion/ciudad_cita/validad_ciudad_usuario_logueado',
+      url: 'configuracion/ciudad_cita/ciudad_usuario_logueado',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       type: 'POST',
       datatype:'json',
@@ -91,11 +91,31 @@ $(document).ready(function() {
       cache: false,
       processData: false,
     }).done(function(response){
+      
+      $('#ciudad_user').val(response[0].ciudad);
+      $('#direccion_user').val(response[0].direccion);
 
-      if(response.length>0){
-        $('input[value="mi_direccion"]').prop( "checked", true );
-        $('#ciudad_user').val(response[0].ciudad);
-        $('#direccion_user').val(response[0].direccion);
+    });
+
+    //// VALIDAR CIUDAD DE USUARIO LOGUEADO PARA MODALIDAD VISITA
+    $.ajax({
+      url: 'configuracion/ciudad_cita/validar_ciudad_usuario_logueado',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      datatype:'json',
+      contentType: false,
+      cache: false,
+      processData: false,
+    }).done(function(response){
+      
+      if(response.length > 0){
+        $('input[value="mi_direccion"]').prop('checked', true);
+        $("#ciudad_user_no_valida").addClass("visible"); 
+      }
+      else{
+        $('input[value="mi_direccion"]').prop('checked', false);
+        $('input[value="mi_direccion"]').prop('disabled', true);
+        $("#ciudad_user_no_valida").removeClass("visible");  
       }
 
     });

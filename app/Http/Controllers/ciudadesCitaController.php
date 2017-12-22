@@ -147,16 +147,25 @@ class ciudadesCitaController extends Controller
         }
     }
 
-    public function validad_ciudad_usuario_logueado(Request $request)
+    public function ciudad_usuario_logueado(Request $request)
     {   
 
         if($request->ajax()){
 
-            $ciudad = CiudadCita::where('ciudad','=',\Auth::user()->ciudad)->get(); 
-
             $user = User::where('email','=',\Auth::user()->email)->get(); 
 
             return response($user);
+        }
+    }
+
+    public function validar_ciudad_usuario_logueado(Request $request)
+    {   
+
+        if($request->ajax()){
+
+            $ciudades = CiudadCita::where('ciudad','=',\Auth::user()->ciudad)->get(); 
+
+            return response($ciudades);
         }
     }
 }
