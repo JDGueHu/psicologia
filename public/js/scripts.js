@@ -310,4 +310,9 @@ $(document).ready(function() {
 
     });     
 
+    //// RESERVAR 
+    $("#reservar").click(function() {
+      alert("Ha reservado exitosamente");
+    });
+
 })

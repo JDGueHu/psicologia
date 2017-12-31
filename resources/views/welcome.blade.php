@@ -467,10 +467,15 @@
                 <p>Te llegará un email para confirmar la cita, si no la confirmas podrias perder la cita</p>
               </div>                 
             </div>
+            <div class="row">  
+              <div class="col-md-4 col-md-offset-4">              
+                <button type="button" style="padding: 2px 12px" class="btn btn-default form-control" id="reservar">Reservar</button>
+              </div>               
+            </div>
           </section>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" style="background: #ffffff; border-color: #ccc" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
     

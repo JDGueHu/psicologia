@@ -163,7 +163,8 @@ class ciudadesCitaController extends Controller
 
         if($request->ajax()){
 
-            $ciudades = CiudadCita::where('ciudad','=',\Auth::user()->ciudad)->get(); 
+            $ciudades = CiudadCita::where('alive', true)
+                ->where('ciudad','=',\Auth::user()->ciudad)->get(); 
 
             return response($ciudades);
         }
