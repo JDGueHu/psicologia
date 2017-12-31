@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //// PARA INHABILITAR DIAS EN EL CALENDARIO
+    //// PARA HABILITAR DIAS EN EL CALENDARIO
     $.ajax({
       url: 'configuracion/dias/consultar_dias',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -63,8 +63,27 @@ $(document).ready(function() {
     });
 
     //// CARGAR PARÁMETROS
+    // $.ajax({
+    //   url: 'configuracion/parametro/consultar_parametros',
+    //   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    //   type: 'POST',
+    //   datatype:'json',
+    //   contentType: false,
+    //   cache: false,
+    //   processData: false,
+    // }).done(function(response){
+
+    //     response.forEach(function(element){
+    //       if(element.llave == "DIRECCION_CONSULTORIO"){
+    //         $('#direccion_consultorio').text(element.valor);
+    //       }
+    //     });
+
+    // });
+
+    //// CARGAR DETALLES DE MODALIDADES
     $.ajax({
-      url: 'configuracion/parametro/consultar_parametros',
+      url: 'configuracion/modalidad/consultar_modalidades',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       type: 'POST',
       datatype:'json',
@@ -73,11 +92,19 @@ $(document).ready(function() {
       processData: false,
     }).done(function(response){
 
-        response.forEach(function(element){
-          if(element.llave == "DIRECCION_CONSULTORIO"){
-            $('#direccion_consultorio').text(element.valor);
-          }
-        });
+      console.log(response);
+
+      response.forEach(function(element){
+        if(element.tipo_modalidad == "Consultorio"){
+          document.getElementById("modadlidad_consultorio").innerHTML = element.detalles;
+        }
+        if(element.tipo_modalidad == "Virtual"){
+          document.getElementById("modadlidad_virtual").innerHTML = element.detalles;
+        }
+        if(element.tipo_modalidad == "Visita"){
+          document.getElementById("modadlidad_visita").innerHTML = element.detalles;
+        }
+      });     
 
     });
 
@@ -141,7 +168,7 @@ $(document).ready(function() {
       $.fn.validar_inputs();
     });
 
-    //// PARA INHABILITAR HORAS EN EL TIMEPICKER RESPECTO AL DIA SELECCIONADO
+    //// PARA HABILITAR HORAS EN EL TIMEPICKER RESPECTO AL DIA SELECCIONADO
     $('#sandbox').change(function() {
 
       $.fn.validar_inputs();

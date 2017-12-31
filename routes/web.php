@@ -70,6 +70,10 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'uses' => 'modalidadesController@activar',
 		'as' => 'modalidad.activar'
 	]);
+	Route::post('modalidad/consultar_modalidades',[
+		'uses' => 'modalidadesController@consultar_modalidades',
+		'as' => 'modalidad.consultar_modalidades'
+	]);
 
 	Route::resource('ciudad_cita','ciudadesCitaController');
 	Route::get('ciudad_cita/{id}/destroy',[

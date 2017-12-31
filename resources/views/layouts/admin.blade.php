@@ -21,6 +21,7 @@
 <link href="{{ asset('jquery_confirm/css/jquery-confirm.css') }}" rel="stylesheet">
 
 <link href="{{ asset('chosen/chosen.css') }}" rel="stylesheet">
+<link href="{{ asset('Trumbowyg-master/dist/ui/trumbowyg.min.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -61,6 +62,7 @@
 
 <script src="{{ asset('jquery_confirm/js/jquery-confirm.min.js') }}"></script>
 <script src="{{ asset('chosen/chosen.jquery.js') }}"></script>
+<script src="{{ asset('Trumbowyg-master/dist/trumbowyg.min.js') }}"></script>
 
 <!-- Vendor Scripts -->
 <script src="{{ asset('js/modernizr.custom.js') }}"></script> 

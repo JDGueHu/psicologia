@@ -16,7 +16,7 @@ class CrearTablaDias extends Migration
         Schema::create('dias', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('dia')->unique();
+            $table->string('dia');
             $table->string('dia_ingles');
             $table->integer('numero_dia');
             $table->double('costo', 10, 2);

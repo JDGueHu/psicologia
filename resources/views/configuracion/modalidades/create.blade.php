@@ -21,18 +21,14 @@
 
         <div class="row">   
             <div class="col-md-6 separarBottom">
-                {!! Form::label('modalidad','Modalidad')  !!}
-                {!! Form::text('modalidad',null, ['class' => 'form-control mayusculas', 'id'=>'modalidad'])  !!}
-
-                @if ($errors->has('dia'))
-                    <span style="color: red" class="help-block">
-                        <strong>{{ $errors->first('dia') }}</strong>
-                    </span>
-                @endif
-            </div>
-            <div class="col-md-6 separarBottom">
                 {!! Form::label('costo','Costo')  !!}
                 {!! Form::number('costo',null, ['class' => 'form-control', 'required', 'id'=>'costo'])  !!}
+
+                @if ($errors->has('tipo_modalidad'))
+                <span style="color: red" class="help-block">
+                    <strong>{{ $errors->first('tipo_modalidad') }}</strong>
+                </span>
+                @endif
             </div>
         </div>
         <div class="row">
@@ -52,10 +48,9 @@
         <div class="row">  
             <div class="col-md-12 separarBottom">
                 {!! Form::label('detalles','Detalles')  !!}
-                {!! Form::textarea('detalles',null, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4'])  !!}
+                {!! Form::textarea('detalles',null, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4','required'])  !!}
             </div>
         </div>
-
     </div>
 </div>
 
@@ -67,4 +62,10 @@
 
 {!! Form::close() !!}
 
+@endsection
+
+@section('script')
+    <script>
+        $('#detalles').trumbowyg();
+    </script>
 @endsection

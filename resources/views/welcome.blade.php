@@ -409,11 +409,11 @@
             </div>
             <div class="row">
               <div class="col-md-12">              
-                <p id="modadlidad_consultorio" class="visible">Modalidad Consultorio: Recuerda presentarte 10 min antes de la hora inicio de la cita en la dirección <span class="resaltar" id="direccion_consultorio"></span>.</p>
-                <p id="modadlidad_virtual" class="visible">Modalidad Virtual: El usuario de contacto que te atenderá en Skype es XXX y para Hangouts es xxx, por favor conéctate 5 min antes de la hora de inicio de la cita.</p>
+                <div id="modadlidad_consultorio" class="visible"></div>
+                <div id="modadlidad_virtual" class="visible"></div>
               </div>  
               <div class="col-md-12">              
-                <p id="modadlidad_visita" class="visible">Modalidad Visita: La dirección marcada corresponde a la dirección registrada en tu perfil de usuario, si deseas usar una dirección diferente por favor marca la opción usar otra dirección e indica la nueva dirección.</p>
+                <div id="modadlidad_visita" class="visible"></div>
               </div>               
             </div>
             <div id="modadlidad_visita_direccion" class="visible">

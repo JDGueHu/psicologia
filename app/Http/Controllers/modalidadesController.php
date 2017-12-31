@@ -15,7 +15,7 @@ class modalidadesController extends Controller
      */
     public function index()
     {
-        $modalidades = Modalidad::orderby('modalidad')->get();
+        $modalidades = Modalidad::get();
 
         return view('configuracion.modalidades.index')
             ->with('modalidades',$modalidades);
@@ -24,7 +24,7 @@ class modalidadesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'modalidad' => 'unique:modalidades'
+            'tipo_modalidad' => 'unique:modalidades'
         ]);
     }
 
@@ -50,7 +50,6 @@ class modalidadesController extends Controller
         
         $modalidad = new Modalidad();
 
-        $modalidad->modalidad = $request->modalidad;
         $modalidad->costo = $request->costo;
         $modalidad->detalles = $request->detalles;
         $modalidad->tipo_modalidad = $request->tipo_modalidad;
@@ -99,7 +98,6 @@ class modalidadesController extends Controller
     {
         $modalidad = Modalidad::find($id);
 
-        $modalidad->modalidad = $request->modalidad;
         $modalidad->costo = $request->costo;
         $modalidad->detalles = $request->detalles;
         $modalidad->tipo_modalidad = $request->tipo_modalidad;
@@ -135,5 +133,15 @@ class modalidadesController extends Controller
 
         flash('Modalidad <b>'.$modalidad->modalidad.'</b> se activó exitosamente', 'success')->important();
         return redirect()->route('modalidad.index');
+    }
+
+    public function consultar_modalidades(Request $request)
+    {   
+        if($request->ajax()){   
+
+            $modalidades = Modalidad::get();
+
+            return response($modalidades);
+        }
     }
 }

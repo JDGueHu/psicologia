@@ -20,16 +20,6 @@
 
         <div class="row">   
             <div class="col-md-6 separarBottom">
-                {!! Form::label('modalidad','Modalidad')  !!}
-                {!! Form::text('modalidad',$modalidad->modalidad, ['class' => 'form-control mayusculas', 'id'=>'dia','modalidad','readonly'])  !!}
-
-                @if ($errors->has('dia'))
-                    <span style="color: red" class="help-block">
-                        <strong>{{ $errors->first('dia') }}</strong>
-                    </span>
-                @endif
-            </div>
-            <div class="col-md-6 separarBottom">
                 {!! Form::label('costo','Costo')  !!}
                 {!! Form::number('costo',$modalidad->costo, ['class' => 'form-control', 'required', 'id'=>'costo','readonly'])  !!}
             </div>
@@ -54,7 +44,6 @@
                 {!! Form::textarea('detalles',$modalidad->detalles, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4','readonly'])  !!}
             </div>
         </div>
-
     </div>
 </div>
 

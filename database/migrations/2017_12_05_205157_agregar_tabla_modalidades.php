@@ -16,10 +16,9 @@ class AgregarTablaModalidades extends Migration
         Schema::create('modalidades', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('modalidad');
             $table->double('costo', 10, 2);
-            $table->string('detalles',1000);
             $table->string('tipo_modalidad');
+            $table->string('detalles','1500');
 
             $table->boolean('alive')->default(true);
 

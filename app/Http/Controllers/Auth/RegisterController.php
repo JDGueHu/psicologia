@@ -109,10 +109,10 @@ class RegisterController extends Controller
                 return redirect()->route('login');
             }else{
                 
-                return redirect()->route('home');
+                return redirect()->route('welcome');
             }
         }else{
-            return redirect()->route('home');
+            return redirect()->route('welcome');
         }
     }
  }

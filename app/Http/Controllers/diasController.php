@@ -48,11 +48,11 @@ class diasController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validator($request->all())->validate();
+        //$this->validator($request->all())->validate();
 
         $dia = new Dia();
 
-        $dia->dia = $request->dia;
+        $dia->dia = strtoupper($request->dia);
         $dia->dia_ingles = $request->dia_ingles;
         $dia->numero_dia = $request->numero_dia;
         $dia->costo = $request->costo;
@@ -106,7 +106,7 @@ class diasController extends Controller
 
         $dia = Dia::find($id);
 
-        $dia->dia = $request->dia;
+        $dia->dia = strtoupper($request->dia);
         $dia->dia_ingles = $request->dia_ingles;
         $dia->numero_dia = $request->numero_dia;
         $dia->costo = $request->costo;
@@ -165,12 +165,22 @@ class diasController extends Controller
             '8:00pm'=>'8:00pm'
         ];
         $horas_selecionadas = Dia_Horas::where('dia_id','=',$id)->pluck('hora');
-        //dd($horas_selecionadas);
+
+        $costo_hora = Dia_Horas::where('dia_id','=',$id)->first();
+        if($costo_hora == null){
+            $costo_hora = 0;
+        }else{
+            $costo_hora = $costo_hora->costo;
+        }
+        //dd($costo_hora->costo);
+      
 
         return view('configuracion.dias.horas')
             ->with('dia',$dia)
             ->with('horas',$horas)
-            ->with('horas_selecionadas',$horas_selecionadas);
+            ->with('horas_selecionadas',$horas_selecionadas)
+            ->with('costo_hora',$costo_hora);
+
     }
 
     public function asociar_horas_store(Request $request)

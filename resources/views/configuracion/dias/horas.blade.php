@@ -37,8 +37,8 @@
         </div>
         <div class="row"> 
             <div class="col-md-6 separarBottom">
-                {!! Form::label('costo','Costo')  !!}
-                {!! Form::number('costo',null, ['class' => 'form-control', 'required', 'id'=>'costo'])  !!}
+                {!! Form::label('costo','Costo (COP)')  !!}
+                {!! Form::number('costo',$costo_hora, ['class' => 'form-control', 'required', 'id'=>'costo'])  !!}
             </div>
         </div>
 

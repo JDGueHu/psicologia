@@ -41,7 +41,7 @@
                 {!! Form::number('numero_dia',$dia->numero_dia, ['class' => 'form-control', 'required', 'id'=>'numero_dia', 'readonly'])  !!}
             </div>
             <div class="col-md-6 separarBottom">
-                {!! Form::label('costo','Costo')  !!}
+                {!! Form::label('costo','Costo (COP)')  !!}
                 {!! Form::number('costo',$dia->costo, ['class' => 'form-control', 'required', 'id'=>'costo', 'readonly'])  !!}
             </div>
         </div>
@@ -55,7 +55,7 @@
         <thead>
             <tr>
                 <th>Hora</th>
-                <th>Costo</th>
+                <th>Costo (COP)</th>
             </tr>
         </thead>
         <tbody>

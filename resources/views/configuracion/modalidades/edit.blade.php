@@ -21,16 +21,6 @@
 
         <div class="row">   
             <div class="col-md-6 separarBottom">
-                {!! Form::label('modalidad','Modalidad')  !!}
-                {!! Form::text('modalidad',$modalidad->modalidad, ['class' => 'form-control mayusculas', 'id'=>'dia','modalidad'])  !!}
-
-                @if ($errors->has('dia'))
-                    <span style="color: red" class="help-block">
-                        <strong>{{ $errors->first('dia') }}</strong>
-                    </span>
-                @endif
-            </div>
-            <div class="col-md-6 separarBottom">
                 {!! Form::label('costo','Costo')  !!}
                 {!! Form::number('costo',$modalidad->costo, ['class' => 'form-control', 'required', 'id'=>'costo'])  !!}
             </div>
@@ -52,10 +42,9 @@
         <div class="row">  
             <div class="col-md-12 separarBottom">
                 {!! Form::label('detalles','Detalles')  !!}
-                {!! Form::textarea('detalles',$modalidad->detalles, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4'])  !!}
+                {!! Form::textarea('detalles',$modalidad->detalles, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4','required'])  !!}
             </div>
         </div>
-
     </div>
 </div>
 
@@ -66,4 +55,10 @@
 
 {!! Form::close() !!}
 
+@endsection
+
+@section('script')
+    <script>
+        $('#detalles').trumbowyg();
+    </script>
 @endsection
