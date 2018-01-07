@@ -125,12 +125,6 @@
                         </div>
                         <div class="col-md-6 {{ $errors->has('politicas_tratamiento_datos') ? ' has-error' : '' }}">
                             <input type="checkbox" required name="politicas_tratamiento_datos" id="politicas_tratamiento_datos"> He leido y acepto la <a href=""><b>Política de tratamiento de información y datos personales</b></a>
-
-                            @if ($errors->has('direccion'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('direccion') }}</strong>
-                                </span>
-                            @endif
                         </div> 
                     </div>
 

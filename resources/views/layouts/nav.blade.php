@@ -20,7 +20,7 @@
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-cubes colorNavIcon" aria-hidden="true"></i>
+            <i class="fa fa-wrench" aria-hidden="true"></i>
             &nbsp;Configuración&nbsp;
             <i class="fa fa-angle-down" aria-hidden="true"></i>
           </a>
@@ -32,7 +32,26 @@
               <li><a href="{{ route('parametro.index') }}"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp Parámetros </a></li>      
           </ul>
         </li>
-      </ul>   
+
+
+      </ul>  
+
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+            &nbsp;Administración&nbsp;
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <!--li role="separator" class="divider"></li-->
+              <li><a href="{{ route('usuarios.index') }}"><i class="fa fa-user" aria-hidden="true"></i> &nbsp Usuarios </a></li> 
+          </ul>
+        </li>
+
+        
+      </ul>  
 
       <ul class="nav navbar-nav navbar-right">
           <!-- Authentication Links -->

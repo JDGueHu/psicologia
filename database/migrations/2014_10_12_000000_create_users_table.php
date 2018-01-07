@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('direccion');
             $table->string('rol')->default('Invitado');
             $table->string('password');
+
+            $table->boolean('alive')->default(true);
+            
             $table->rememberToken();
             $table->timestamps();
         });

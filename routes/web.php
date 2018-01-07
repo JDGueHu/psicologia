@@ -111,3 +111,15 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'as' => 'parametro.consultar_parametros'
 	]);
 });
+
+Route::group(['prefix'=>'administracion','middleware' => 'auth'],function(){
+	Route::resource('usuarios','userController');
+	Route::get('usuarios/{id}/destroy',[
+		'uses' => 'userController@destroy',
+		'as' => 'usuarios.destroy'
+	]);
+	Route::get('usuarios/{id}/activar',[
+		'uses' => 'userController@activar',
+		'as' => 'usuarios.activar'
+	]);
+});
