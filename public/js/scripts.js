@@ -81,7 +81,7 @@ $(document).ready(function() {
 
     // });
 
-    //// CARGAR DETALLES DE MODALIDADES
+    //// CARGAR MODALIDADES
     $.ajax({
       url: 'configuracion/modalidad/consultar_modalidades',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -92,7 +92,18 @@ $(document).ready(function() {
       processData: false,
     }).done(function(response){
 
-      console.log(response);
+      $("#modadlidad_cita option").remove();
+      $('#modadlidad_cita').append($('<option>', {
+        value: '',
+        text: ''
+      }));
+
+      response.forEach(function(element){
+        $('#modadlidad_cita').append($('<option>', {
+            value: element.id,
+            text: element.tipo_modalidad
+        }));
+      });
 
       response.forEach(function(element){
         if(element.tipo_modalidad == "Consultorio"){
@@ -147,7 +158,7 @@ $(document).ready(function() {
 
     });
 
-    //// VALIDAR INPUTS
+    //// VALIDAR INPUTS BOTON CONSULTAR
     if($('#sandbox').val() == "" || $('#horas option:selected').text() == ""){
       $("#consultar").prop( "disabled", true );     
     }else{
@@ -214,7 +225,7 @@ $(document).ready(function() {
       form_data.append('hora', $('#horas').val());
 
       $.ajax({
-        url: 'configuracion/dias/consultar_disponibilidad',
+        url: 'administracion/citas/consultar_disponibilidad',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'POST',
         datatype:'json',
@@ -254,13 +265,16 @@ $(document).ready(function() {
         $('#medio_virtual_cita').val('');
         $('#input_nombre_usuario').val('');
 
+        $("#modadlidad_visita_direccion").addClass("visible");
+        $('#ciudad').val('');
+        $('#direccion_completa').val('');
 
     }
 
     //// MOSTRAR CAMPO MEDIO VIRTUAL POR CAMBIO DE MODALIDAD
     $('#modadlidad_cita').change(function() {
 
-      if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Consultorio"){
+      if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text().trim() == "Consultorio"){
 
         $.fn.limpiar_x_cambio();
 
@@ -269,7 +283,9 @@ $(document).ready(function() {
         $("#modadlidad_visita").addClass("visible");
         $("#modadlidad_visita_direccion").addClass("visible");
 
-      }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Virtual"){
+        $("#paso_3").removeClass("visible");
+
+      }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text().trim() == "Virtual"){
 
         $("#medio_virtual").removeClass("visible");  
 
@@ -278,7 +294,9 @@ $(document).ready(function() {
         $("#modadlidad_visita").addClass("visible");
         $("#modadlidad_visita_direccion").addClass("visible");
 
-      }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text() == "Visita"){
+        $("#paso_3").removeClass("visible");
+
+      }else if($('#modadlidad_cita').val() != "" && $('#modadlidad_cita option:selected').text().trim() == "Visita"){
 
         $.fn.limpiar_x_cambio();
 
@@ -287,13 +305,21 @@ $(document).ready(function() {
         $("#modadlidad_visita").removeClass("visible");
         $("#modadlidad_visita_direccion").removeClass("visible");
 
+        $("#paso_3").removeClass("visible");
+
       }else{
         $("#medio_virtual").addClass("visible");
       }   
 
-      setTimeout(function () {
-        $("#paso_3").fadeIn(1000);
-      }, 1000);   
+      if($('#modadlidad_cita').val().trim() == ""){
+        $("#paso_3").addClass("visible");
+        $.fn.limpiar_x_cambio();
+      }
+
+
+      // setTimeout(function () {
+      //   $("#paso_3").fadeIn(1000);
+      // }, 1000);   
 
     });
  
@@ -312,7 +338,87 @@ $(document).ready(function() {
 
     //// RESERVAR 
     $("#reservar").click(function() {
-      alert("Ha reservado exitosamente");
+      //console.log($('input[name="direccion"]:checked').val());
+      if($('#sandbox').val() == "" || $('#horas').val() == "" || $('#modadlidad_cita').val() == "" || 
+        ($('#modadlidad_cita option:selected').text().trim() == "Virtual" && ($('#medio_virtual_cita').val() == "" || $('#input_nombre_usuario').val() == "")) ||
+        ($('#modadlidad_cita option:selected').text().trim() == "Visita" && ($('input[name="direccion"]:checked').val() == "otra_direccion" && ($('#ciudad').val() == "" || $('#direccion_completa').val() == "")))
+        ){
+
+        if($('#sandbox').val() == ""){
+          $("#sandbox").addClass("clase_error");
+        }
+
+        if($('#horas').val() == ""){
+          $("#horas").addClass("clase_error");
+        }
+
+        if($('#modadlidad_cita').val() == ""){
+          $("#modadlidad_cita").addClass("clase_error");
+        }
+
+        if($('#modadlidad_cita option:selected').text().trim() == "Virtual" && ($('#medio_virtual_cita').val() == "" || $('#input_nombre_usuario').val() == "")){
+          if($('#medio_virtual_cita').val() == ""){
+            $("#medio_virtual_cita").addClass("clase_error");
+          }
+
+          if($('#input_nombre_usuario').val() == ""){
+            $("#input_nombre_usuario").addClass("clase_error");
+          }
+        }
+
+        if($('#modadlidad_cita option:selected').text().trim() == "Visita" && ($('input[name="direccion"]:checked').val() == "otra_direccion" && ($('#ciudad').val() == "" || $('#direccion_completa').val() == ""))){
+          if($('#ciudad').val() == ""){
+            $("#ciudad").addClass("clase_error");
+          }
+
+          if($('#direccion_completa').val() == ""){
+            $("#direccion_completa").addClass("clase_error");
+          }
+        }
+
+        $("#campos_requeridos").removeClass("visible");  
+        
+      }else{
+
+        $("#campos_requeridos").addClass("visible");
+
+        $("#sandbox").removeClass("clase_error");
+        $("#horas").removeClass("clase_error");
+        $("#modadlidad_cita").removeClass("clase_error");
+        $("#medio_virtual_cita").removeClass("clase_error");
+        $("#input_nombre_usuario").removeClass("clase_error");
+        $("#ciudad").removeClass("clase_error");
+        $("#direccion_completa").removeClass("clase_error");
+
+        // APARTAR CITA
+        var form_data = new FormData();
+        form_data.append('fecha', $('#sandbox').val());
+        form_data.append('hora', $('#horas').val());
+        form_data.append('modadlidad_cita', $('#modadlidad_cita').val());
+        form_data.append('medio_virtual_cita', $('#medio_virtual_cita').val());
+        form_data.append('input_nombre_usuario', $('#input_nombre_usuario').val());
+        form_data.append('tipo_direccion', $('input[name="direccion"]:checked').val());
+        form_data.append('ciudad_user', $('#ciudad_user').val());
+        form_data.append('direccion_user', $('#direccion_user').val());
+        form_data.append('ciudad', $('#ciudad').val());
+        form_data.append('direccion_completa', $('#direccion_completa').val());
+
+        $.ajax({
+          url: 'administracion/citas/apartar_cita',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          type: 'POST',
+          datatype:'json',
+          contentType: false,
+          cache: false,
+          processData: false,
+          data : form_data
+        }).done(function(response){
+         console.log(response);
+
+        });
+
+      }
+
     });
 
 })

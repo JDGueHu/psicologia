@@ -1772,3 +1772,4 @@ padding-top: 3px;
 .color_requerido{ color: red; }
 .texto_disponibilidad{ font-size: 18px; margin: 0px; margin-top: 12px}
 .resaltar{ font-weight: bold; }
+.clase_error{ border: 2px solid red; }

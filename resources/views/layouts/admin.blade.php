@@ -14,7 +14,6 @@
 <link href="{{ asset('css/style_admin.css') }}" rel="stylesheet">
 <link href="{{ asset('fonts/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 <link href="{{ asset('date_picker_jquery/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-<link href="{{ asset('timepicker_jquery/jquery.timepicker.css') }}" rel="stylesheet">
 
 <link href="{{ asset('dataTable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 <link href="{{ asset('dataTable/css/buttons.dataTables.min.css') }}" rel="stylesheet">
@@ -49,7 +48,6 @@
 <script src="{{ asset('js/jquery.fancybox-media.js') }}"></script> 
 <script src="{{ asset('js/jquery.flexslider.js') }}"></script> 
 <script src="{{ asset('js/animate.js') }}"></script> 
-<script src="{{ asset('timepicker_jquery/jquery.timepicker.min.js') }}"></script> 
 
 <script src="{{ asset('dataTable/js/jquery.dataTables.min.js') }}"></script>    
 <script src="{{ asset('dataTable/js/dataTables.buttons.min.js') }}"></script>

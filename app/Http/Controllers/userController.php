@@ -14,7 +14,7 @@ class userController extends Controller
      */
     public function index()
     {
-        $usuarios = User::where('alive',true)->get();
+        $usuarios = User::get();
 
         return view('administracion.usuarios.index')
             ->with('usuarios',$usuarios);
@@ -78,20 +78,22 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = new user();
+        $usuario = User::find($id);
 
-        $user->nombres = $request->nombres;
-        $user->apellidos = $request->apellidos;
-        $user->email = $request->email;
-        $user->celular = $request->celular;
-        $user->ciudad = $request->ciudad;
-        $user->departamento = $request->departamento;
-        $user->pais = $request->pais;
-        $user->direccion = $request->direccion;
-        $user->password = bcrypt($request->password);
-        $user->save();
+        //dd($usuario);
 
-        flash('Usuario  <b>'.$usuario->nombres." ".$usuario->apellidos.'</b> se editó exitosamente', 'danger')->important();
+        $usuario->nombres = $request->nombres;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->email = $request->email;
+        $usuario->celular = $request->celular;
+        $usuario->ciudad = $request->ciudad;
+        $usuario->departamento = $request->departamento;
+        $usuario->pais = $request->pais;
+        $usuario->direccion = $request->direccion;
+        $usuario->password = bcrypt($request->password);
+        $usuario->save();
+
+        flash('Usuario  <b>'.$usuario->nombres." ".$usuario->apellidos.'</b> se editó exitosamente', 'warning')->important();
         return redirect()->route('usuarios.index');  
     }
 

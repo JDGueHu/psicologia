@@ -331,6 +331,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3 class="modal-title">APARTAR TU CITA</h3>
+        <h5 class="visible" style="color: red;margin-bottom: 0px" id="campos_requeridos">Diligencie los campos remarcados para apartar la cita</h5>
       </div>
       <div class="modal-body">
            <!-- PARA EL PASO 1 -->
@@ -343,12 +344,12 @@
             </div>   
             <div class="row">
               <div class="col-md-4"> 
-                <label for="sandbox">Fecha</label>             
+                <label for="sandbox">Fecha<span style="color: red">*</span></label>             
                 <input id="sandbox" type="text" class="form-control">
                 <label id="fecha_requerida" class="visible color_requerido">Campo requerido</label>
               </div>    
               <div class="col-md-4">  
-                <label for="horas">Hora</label>    
+                <label for="horas">Hora<span style="color: red">*</span></label>    
                 <select class="form-control" id="horas" style="padding: 0px">                
                 </select>   
                 <label id="hora_requerida" class="visible color_requerido">Campo requerido</label>     
@@ -386,7 +387,7 @@
             </div>
             <div class="row">
               <div class="col-md-4">    
-                <label for="modadlidad_cita">Modadlidad de la cita</label>           
+                <label for="modadlidad_cita">Modadlidad de la cita<span style="color: red">*</span></label>           
                 <select id="modadlidad_cita" class="form-control" style="padding: 0px">
                   <option value=""></option>
                   <option value="Consultorio">Consultorio</option>                  
@@ -450,7 +451,7 @@
                  <label for="direccion_completa">Direccion</label>           
                  {!! Form::textarea('direccion_completa',null, ['class' => 'form-control', 'id'=>'direccion_completa','size' => '30x2'])  !!}           
                 </div>           
-            </div> 
+              </div> 
             </div>
           </section>         
           <!-- PARA EL PASO 3 -->
@@ -462,14 +463,17 @@
               </div>
             </div>    
             <div class="row">
+              <p>Valor de la consulta: 150.000 COP</p>
+            </div>
+            <div class="row">
               <div class="col-md-12">              
                 <p>Antes de apartar tu cita POR FAVOR verifica los datos que has ingresado, si estas seguro de ellos has click en el boton Apartar cita para finalizar el proceso, una vez lo hagas, te llegará un email con los datos de la cita</p>
-                <p>Te llegará un email para confirmar la cita, si no la confirmas podrias perder la cita</p>
+                <p>Te llegará un email XXX antes de la cita para confirmar asistencia.</p>
               </div>                 
             </div>
             <div class="row">  
               <div class="col-md-4 col-md-offset-4">              
-                <button type="button" style="padding: 2px 12px" class="btn btn-default form-control" id="reservar">Reservar</button>
+                <button type="button" style="padding: 2px 12px" class="btn btn-default form-control" id="reservar">Apartar cita</button>
               </div>               
             </div>
           </section>        

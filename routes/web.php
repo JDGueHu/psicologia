@@ -56,10 +56,6 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'uses' => 'diasController@consultar_horas_dia',
 		'as' => 'dias.consultar_horas_dia'
 	]);
-	Route::post('dias/consultar_disponibilidad',[
-		'uses' => 'diasController@consultar_disponibilidad',
-		'as' => 'dias.consultar_disponibilidad'
-	]);
 
 	Route::resource('modalidad','modalidadesController');
 	Route::get('modalidad/{id}/destroy',[
@@ -73,6 +69,10 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 	Route::post('modalidad/consultar_modalidades',[
 		'uses' => 'modalidadesController@consultar_modalidades',
 		'as' => 'modalidad.consultar_modalidades'
+	]);
+	Route::post('modalidad/consultar_detalles_modalidades',[
+		'uses' => 'modalidadesController@consultar_detalles_modalidades',
+		'as' => 'modalidad.consultar_detalles_modalidades'
 	]);
 
 	Route::resource('ciudad_cita','ciudadesCitaController');
@@ -122,4 +122,23 @@ Route::group(['prefix'=>'administracion','middleware' => 'auth'],function(){
 		'uses' => 'userController@activar',
 		'as' => 'usuarios.activar'
 	]);
+
+	Route::resource('citas','citasController');
+	Route::get('citas/{id}/destroy',[
+		'uses' => 'citasController@destroy',
+		'as' => 'citas.destroy'
+	]);
+	Route::get('citas/{id}/activar',[
+		'uses' => 'citasController@activar',
+		'as' => 'citas.activar'
+	]);
+	Route::post('citas/consultar_disponibilidad',[
+		'uses' => 'citasController@consultar_disponibilidad',
+		'as' => 'citas.consultar_disponibilidad'
+	]);
+	Route::post('citas/apartar_cita',[
+		'uses' => 'citasController@apartar_cita',
+		'as' => 'citas.apartar_cita'
+	]);
+
 });

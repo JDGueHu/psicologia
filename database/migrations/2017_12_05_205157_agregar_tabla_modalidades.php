@@ -18,7 +18,7 @@ class AgregarTablaModalidades extends Migration
 
             $table->double('costo', 10, 2);
             $table->string('tipo_modalidad');
-            $table->string('detalles','1500');
+            $table->string('detalles','1500')->nullable();
 
             $table->boolean('alive')->default(true);
 

@@ -44,11 +44,11 @@
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('departamento','Departamento')  !!}
-                {!! Form::text('departamento',$usuario->departamento, ['class' => 'form-control', 'id'=>'departamento', 'disabled'])  !!}
+                {!! Form::text('departamento',$usuario->departamento, ['class' => 'form-control', 'id'=>'departamento', 'readonly'])  !!}
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('pais','País')  !!}
-                {!! Form::text('pais',$usuario->pais, ['class' => 'form-control', 'id'=>'pais', 'disabled'])  !!}
+                {!! Form::text('pais',$usuario->pais, ['class' => 'form-control', 'id'=>'pais', 'readonly'])  !!}
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('direccion','Dirección')  !!}

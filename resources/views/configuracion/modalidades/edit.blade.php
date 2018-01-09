@@ -42,7 +42,7 @@
         <div class="row">  
             <div class="col-md-12 separarBottom">
                 {!! Form::label('detalles','Detalles')  !!}
-                {!! Form::textarea('detalles',$modalidad->detalles, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4','required'])  !!}
+                {!! Form::textarea('detalles',$modalidad->detalles, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4'])  !!}
             </div>
         </div>
     </div>

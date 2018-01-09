@@ -242,16 +242,4 @@ class diasController extends Controller
         }
     }
 
-    public function consultar_disponibilidad(Request $request)
-    {   
-        if($request->ajax()){   
-
-            $disponibilidad = Cita::where('alive', true)
-                ->where('fecha', '=', $request->fecha)
-                ->where('hora', '=', $request->hora)
-                ->get();
-
-            return response($disponibilidad);
-        }
-    }
 }
