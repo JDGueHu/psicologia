@@ -143,8 +143,7 @@
                           </div>
                         @else
                           <div>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-                            <a href="#" class="btn btn-primary boton_apartar_cita"><b>Aparta tu cita</b></a>       
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Aparta tu cita</button>       
                           </div>
                         @endif 
                         
@@ -463,7 +462,9 @@
               </div>
             </div>    
             <div class="row">
-              <p>Valor de la consulta: 150.000 COP</p>
+              <div class="col-md-12"> 
+                <p style="font-size: 16px"><span style="font-weight: bold">Valor de la consulta:</span> 150.000 COP</p>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-12">              

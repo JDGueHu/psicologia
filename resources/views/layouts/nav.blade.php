@@ -47,6 +47,7 @@
           <ul class="dropdown-menu">
             <!--li role="separator" class="divider"></li-->
               <li><a href="{{ route('usuarios.index') }}"><i class="fa fa-user" aria-hidden="true"></i> &nbsp Usuarios </a></li> 
+              <li><a href="{{ route('citas.index') }}"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp Citas </a></li> 
           </ul>
         </li>
 

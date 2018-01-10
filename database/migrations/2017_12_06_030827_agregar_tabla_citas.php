@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AgregarTablaMediosCitas extends Migration
+class AgregarTablaCitas extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class AgregarTablaMediosCitas extends Migration
     public function up()
     {
         Schema::create('citas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id');   
 
+            $table->integer('consecutivo')->default(0);
+            $table->string('consecutivo_cita');
+            $table->string('usuario_id');
             $table->string('fecha');
             $table->string('hora');
 
@@ -28,6 +31,7 @@ class AgregarTablaMediosCitas extends Migration
             $table->string('tipo_direccion')->nullable();
             $table->string('ciudad')->nullable();
             $table->string('dirección')->nullable();
+            $table->string('detalles','1500')->nullable();
 
             $table->string('estado')->default('Por confirmar');
 
