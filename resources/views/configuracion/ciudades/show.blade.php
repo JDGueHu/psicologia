@@ -21,21 +21,15 @@
         <div class="row">   
             <div class="col-md-4 separarBottom">
                 {!! Form::label('ciudad','Ciudad')  !!}
-                {!! Form::text('ciudad',$ciudad->ciudad, ['class' => 'form-control', 'id'=>'ciudad','readonly'])  !!}
-
-                @if ($errors->has('ciudad'))
-                    <span style="color: red" class="help-block">
-                        <strong>{{ $errors->first('ciudad') }}</strong>
-                    </span>
-                @endif
+                <p>{!! $ciudad->ciudad !!}</p>
             </div>
             <div class="col-md-4 separarBottom">
                 {!! Form::label('departamento','Municipio')  !!}
-                {!! Form::text('departamento',$ciudad->municipio, ['class' => 'form-control', 'id'=>'departamento','readonly'])  !!}
+                <p>{!! $ciudad->municipio !!}</p>
             </div>
             <div class="col-md-4 separarBottom">
                 {!! Form::label('pais','Pais')  !!}
-                {!! Form::text('pais',$ciudad->pais, ['class' => 'form-control', 'id'=>'pais','readonly'])  !!}
+                <p>{!! $ciudad->pais !!}</p>
             </div>
         </div>
 

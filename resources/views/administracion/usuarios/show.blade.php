@@ -21,37 +21,37 @@
         <div class="row">   
             <div class="col-md-3 separarBottom">
                 {!! Form::label('nombres','Nombres')  !!}
-                {!! Form::text('nombres',$usuario->nombres, ['class' => 'form-control', 'id'=>'nombres','readonly'])  !!}
+                <p>{!! $usuario->nombres !!}</p>
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('apellidos','Apellidos')  !!}
-                {!! Form::text('apellidos',$usuario->apellidos, ['class' => 'form-control', 'id'=>'apellidos','readonly'])  !!}
+                <p>{!! $usuario->apellidos !!}</p>
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('email','Correo electrónico')  !!}
-                {!! Form::text('email',$usuario->email, ['class' => 'form-control', 'id'=>'email','readonly'])  !!}
+                <p>{!! $usuario->email !!}</p>
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('celular','Celular')  !!}
-                {!! Form::text('celular',$usuario->celular, ['class' => 'form-control', 'id'=>'celular','readonly'])  !!}
+                <p>{!! $usuario->celular !!}</p>
             </div>
         </div>
         <div class="row">   
             <div class="col-md-3 separarBottom">
                 {!! Form::label('ciudad','Ciudad')  !!}
-                {!! Form::text('ciudad',$usuario->ciudad, ['class' => 'form-control', 'id'=>'ciudad','readonly'])  !!}
+                <p>$usuario->ciudad !!}</p>
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('departamento','Departamento')  !!}
-                {!! Form::text('departamento',$usuario->departamento, ['class' => 'form-control', 'id'=>'departamento','readonly'])  !!}
+                <p>{!! $usuario->departamento !!}</p>
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('pais','País')  !!}
-                {!! Form::text('pais',$usuario->pais, ['class' => 'form-control', 'id'=>'pais','readonly'])  !!}
+                <p>{!! $usuario->pais !!}</p>
             </div>
             <div class="col-md-3 separarBottom">
                 {!! Form::label('direccion','Celular')  !!}
-                {!! Form::textarea('direccion',$usuario->direccion, ['class' => 'form-control', 'id'=>'direccion','readonly', 'rows' => 2, 'cols' => 40])  !!}
+                <p>{!! $usuario->direccion !!}</p>
             </div>
         </div>
 

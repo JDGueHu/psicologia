@@ -21,7 +21,7 @@
         <div class="row">   
             <div class="col-md-6 separarBottom">
                 {!! Form::label('costo','Costo')  !!}
-                {!! Form::number('costo',$modalidad->costo, ['class' => 'form-control', 'required', 'id'=>'costo','readonly'])  !!}
+                <p>{!! $modalidad->costo !!}</p>
             </div>
         </div>
         <div class="row">
@@ -41,7 +41,7 @@
         <div class="row">  
             <div class="col-md-12 separarBottom">
                 {!! Form::label('detalles','Detalles')  !!}
-                {!! Form::textarea('detalles',$modalidad->detalles, ['class' => 'form-control', 'id'=>'detalles','size' => '30x4','readonly'])  !!}
+                <p>{!! $modalidad->detalles !!}</p>
             </div>
         </div>
     </div>

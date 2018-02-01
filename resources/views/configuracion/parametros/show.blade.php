@@ -21,17 +21,11 @@
         <div class="row">   
             <div class="col-md-6 separarBottom">
                 {!! Form::label('llave','Llave')  !!}
-                {!! Form::text('llave',$parametro->llave, ['class' => 'form-control mayusculas', 'id'=>'llave','readonly'])  !!}
-
-                @if ($errors->has('llave'))
-                    <span style="color: red" class="help-block">
-                        <strong>{{ $errors->first('llave') }}</strong>
-                    </span>
-                @endif
+                <p>{!! $parametro->llave !!}</p>
             </div>
             <div class="col-md-6 separarBottom">
                 {!! Form::label('valor','Valor')  !!}
-                {!! Form::text('valor',$parametro->valor, ['class' => 'form-control', 'id'=>'valor','readonly'])  !!}
+                <p>{!! $parametro->valor !!}</p>
             </div>
         </div>
 
