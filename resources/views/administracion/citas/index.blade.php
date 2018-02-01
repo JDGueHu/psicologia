@@ -37,7 +37,7 @@
 								@if($cita->estado == 'Confirmada')
 									<td><span class="label label-success">Confirmada</span></td>
 								@else
-									<td><span class="label label-success">Finalizada</span></td>
+									<td><span class="label label-default">Finalizada</span></td>
 								@endif
 							@endif
 						@endif
@@ -48,11 +48,8 @@
 							<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('citas.edit',$cita->id) }}" class="btn btn-warning btn-xs">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</a>
-							<a data-toggle="tooltip" data-placement="top" title="Activar" href="{{ route('citas.activar',$cita->id) }}" class="btn btn-success btn-xs confirm_activar_F">
-								<i class="fa fa-check-square-o" aria-hidden="true"></i>
-							</a>
-							<a data-toggle="tooltip" data-placement="top" title="Inactivar" href="{{ route('citas.destroy',$cita->id) }}" class="btn btn-danger btn-xs confirm_F">
-								<i class="fa fa-ban" aria-hidden="true"></i>
+							<a data-toggle="tooltip" data-placement="top" title="Cancelar cita" href="{{ route('citas.destroy',$cita->id) }}" class="btn btn-danger btn-xs confirm_F">
+								<i class="fa fa-times" aria-hidden="true"></i>
 							</a>
 						</td>
 					</tr>

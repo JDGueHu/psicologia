@@ -140,5 +140,35 @@ Route::group(['prefix'=>'administracion','middleware' => 'auth'],function(){
 		'uses' => 'citasController@apartar_cita',
 		'as' => 'citas.apartar_cita'
 	]);
+	Route::post('citas/consultar_cita',[
+		'uses' => 'citasController@consultar_cita',
+		'as' => 'citas.consultar_cita'
+	]);
+	Route::get('citas/{id}/confirmar',[
+		'uses' => 'citasController@confirmar',
+		'as' => 'citas.confirmar'
+	]);
+	Route::get('citas/{id}/cancelar',[
+		'uses' => 'citasController@cancelar',
+		'as' => 'citas.cancelar'
+	]);
 
+});
+
+Route::group(['prefix'=>'usuario','middleware' => 'auth'],function(){
+
+	Route::resource('datos_usuario','citasUsuarioController');
+	Route::get('datos_usuario/{id}/destroy',[
+		'uses' => 'citasUsuarioController@destroy',
+		'as' => 'datos_usuario.destroy'
+	]);
+	Route::get('datos_usuario/{id}/confirmar',[
+		'uses' => 'citasUsuarioController@confirmar',
+		'as' => 'datos_usuario.confirmar'
+	]);
+	Route::get('datos_usuario/{id}/cancelar',[
+		'uses' => 'citasUsuarioController@cancelar',
+		'as' => 'datos_usuario.cancelar'
+	]);
+	
 });

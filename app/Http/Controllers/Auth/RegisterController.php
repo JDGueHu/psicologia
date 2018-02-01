@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'celular' => 'required|string|max:20',
             'ciudad' => 'required',
             'direccion' => 'required|string|max:400',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'string|min:6|confirmed',
         ]);
     }
 
@@ -109,10 +109,10 @@ class RegisterController extends Controller
                 return redirect()->route('login');
             }else{
                 
-                return redirect()->route('welcome');
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('welcome');
+            return redirect()->route('home');
         }
     }
  }

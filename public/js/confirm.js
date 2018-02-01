@@ -39,4 +39,20 @@ $( document ).ready(function() {
 		cancelButton: "Cancelar",
 	});
 
+	//CONFIRMACIÓN CITAS
+
+	$(".confirmar_cita").confirm({
+	    title: 'Confirmar cita',
+	    content: 'Va a confirmar la cita ¿Desea continuar?',
+        confirmButton: "Continuar",
+		cancelButton: "Cancelar",
+	});
+
+	$(".cancelar_cita").confirm({
+	    title: 'Cancelar cita',
+	    content: 'Va a cancelar la cita ¿Desea continuar?',
+        confirmButton: "Continuar",
+		cancelButton: "Cancelar",
+	});
+
 } );

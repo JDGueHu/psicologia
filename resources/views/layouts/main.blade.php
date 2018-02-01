@@ -14,6 +14,10 @@
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('fonts/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 <link href="{{ asset('date_picker_jquery/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+<link href="{{ asset('jquery_confirm/css/jquery-confirm.css') }}" rel="stylesheet">
+
+<link href="{{ asset('dataTable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dataTable/css/buttons.dataTables.min.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -59,10 +63,13 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('datos_usuario.index') }}">Perfil</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Cerrar sesión
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -95,6 +102,16 @@
 <script src="{{ asset('js/jquery.fancybox-media.js') }}"></script> 
 <script src="{{ asset('js/jquery.flexslider.js') }}"></script> 
 <script src="{{ asset('js/animate.js') }}"></script> 
+<script src="{{ asset('jquery_confirm/js/jquery-confirm.min.js') }}"></script>
+
+<script src="{{ asset('dataTable/js/jquery.dataTables.min.js') }}"></script>    
+<script src="{{ asset('dataTable/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('dataTable/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('dataTable/js/jszip.min.js') }}"></script>
+<script src="{{ asset('dataTable/js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('dataTable/js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('dataTable/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('dataTable/js/buttons.print.min.js') }}"></script>
 
 <!-- Vendor Scripts -->
 <script src="{{ asset('js/modernizr.custom.js') }}"></script> 

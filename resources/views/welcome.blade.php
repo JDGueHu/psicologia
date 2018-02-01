@@ -309,7 +309,7 @@
     <a href="">
       <div class="col-md-12 admin_front">
           
-          <a href="{{ route('dias.index') }}">
+          <a href="{{ route('citas.index') }}">
             <span style="color: #ffffff">Portal de administración</span>
           </a>
       </div>
@@ -321,7 +321,7 @@
 
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
-<!-- Modal -->
+<!-- Modal Apartar Cita-->
 <div class="modal fade pac_container" id="myModal" role="dialog">
   <div class="modal-dialog">
   
@@ -363,7 +363,7 @@
                 <img src="img/pulgar_arriba.jpg" class="imagen" />
               </div>
               <div class="col-md-11">
-                <p class="texto_disponibilidad">Que bien! Hay disponibilidad para la fecha y hora en la que requieres tu cita.</p>
+                <p class="texto_disponibilidad">Hay disponibilidad para la fecha y hora en la que requieres tu cita.</p>
               </div>  
             </div>
             <div class="row visible" id="no_disponible">
@@ -371,7 +371,7 @@
                 <img src="img/lo_siento.jpg" class="imagen" />
               </div>
               <div class="col-md-11">
-                <p>Lo siento! No hay disponibilidad para la fecha y hora en la que requieres tu cita, inténtalo de nuevo en otra fecha u hora.</p>
+                <p>No hay disponibilidad para la fecha y hora en la que requieres tu cita, inténtalo de nuevo en otra fecha u hora.</p>
               </div>  
             </div>
           </section>
@@ -486,8 +486,30 @@
     
   </div>
 </div>
+
+
+<!-- Modal para respuesta de la reserva-->
+<div class="modal fade" id="cita_apartar" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">APARTAR CITA</h4>
+      </div>
+      <div class="modal-body" id="cita_response">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
 @endsection
 
 @section('script')
-
+  <script src="{{ asset('js/tableInline.js') }}"></script>
 @endsection

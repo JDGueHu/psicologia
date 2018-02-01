@@ -1,0 +1,1 @@
+El usuario a confirmado la cita exitosamente

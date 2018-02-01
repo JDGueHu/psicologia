@@ -237,20 +237,29 @@ $(document).ready(function() {
        //console.log(response.length);
 
         if(response.length == 0){
-          setTimeout(function () {
-            $("#disponible").fadeIn(1000);
-          }, 1000);
-          setTimeout(function () {
-            $("#paso_2").fadeIn(1000);
-          }, 1000);
+          $("#disponible").removeClass("visible"); 
+          $("#paso_2").removeClass("visible"); 
+
+          // setTimeout(function () {
+          //   $("#disponible").fadeIn(1000);
+          // }, 1000);
+          // setTimeout(function () {
+          //   $("#paso_2").fadeIn(1000);
+          // }, 1000);
+
           $("#no_disponible").addClass( "visible" );
 
         }else{
-          setTimeout(function () {
-            $("#no_disponible").fadeIn(1000);
-          }, 1000);
+          // setTimeout(function () {
+          //   $("#no_disponible").fadeIn(1000);
+          // }, 1000);
           $("#no_disponible").removeClass("visible");          
           $("#disponible").addClass("visible");
+
+          $.fn.limpiar_x_cambio();
+
+          $("#paso_2").addClass("visible");
+          $("#paso_3").addClass("visible");
         }
 
       });
@@ -413,7 +422,22 @@ $(document).ready(function() {
           processData: false,
           data : form_data
         }).done(function(response){
-         console.log(response);
+          $('#myModal').modal('toggle');
+          $('#cita_apartar').modal('show');
+          $('#cita_response').append(response);
+
+          //Limpiar todos los campos
+          $('#sandbox').val('');
+          $('#horas').val('');  
+          $('#modadlidad_cita').val('')
+
+          $("#disponible").addClass("visible");
+          $("#no_disponible").addClass("visible");
+
+          $("#paso_2").addClass("visible");
+          $("#paso_3").addClass("visible");
+
+          $.fn.limpiar_x_cambio();
 
         });
 

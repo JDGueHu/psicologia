@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
 use App\Cita;
+use App\User;
+use App\Modalidad;
 
 class citasController extends Controller
 {
@@ -56,7 +58,14 @@ class citasController extends Controller
      */
     public function show($id)
     {
-        //
+        $cita = Cita::find($id);
+        $usuario = User::find($cita->usuario_id);
+        $modalidad = Modalidad::find($cita->modalidad_id);
+
+        return view('administracion.citas.show')
+            ->with('cita',$cita)
+            ->with('modalidad',$modalidad)
+            ->with('usuario',$usuario);
     }
 
     /**
@@ -67,7 +76,14 @@ class citasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cita = Cita::find($id);
+        $usuario = User::find($cita->usuario_id);
+        $modalidad = Modalidad::find($cita->modalidad_id);
+
+        return view('administracion.citas.edit')
+            ->with('cita',$cita)
+            ->with('modalidad',$modalidad)
+            ->with('usuario',$usuario);
     }
 
     /**
@@ -79,7 +95,27 @@ class citasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cita = Cita::find($id);
+
+        $cita->usuario_id = Auth::user()->id;
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->modalidad_id = $request->modadlidad_cita;
+        $cita->medio_virtual = $request->medio_virtual_cita;
+        $cita->usuario_medio_virtual = $request->input_nombre_usuario;
+        $cita->tipo_direccion = $request->tipo_direccion;
+        if($request->tipo_direccion == 'mi_direccion'){
+            $cita->ciudad = $request->ciudad_user;
+            $cita->dirección = $request->direccion_user;
+        }else{
+            $cita->ciudad = $request->ciudad;
+            $cita->dirección = $request->direccion_completa;                  
+        }
+        //El estado default de la cotización es Por confirmar, está definido en la migración
+        $cita->save();    
+        
+        flash('Cita  <b>'.$cita->consecutivo_cita.'</b> se editó exitosamente', 'warning')->important();
+        return redirect()->route('citas.index');  
     }
 
     /**
@@ -159,13 +195,29 @@ class citasController extends Controller
                 //El estado default de la cotización es Por confirmar, está definido en la migración
                 $cita->save();                
 
-                $respuesta = "Cita apartada exitosamente";
+                $respuesta = '<p>Su cita se ha apartado exitosamente.<br>El consecutivo de su cita es el <b>'.$cita->consecutivo_cita.'</b>.<br>Recibirá un correo con los detalles de la cita.</p>';
             }
             else{
-                $respuesta = "Cita NO apartada exitosamente";
+                $respuesta = "<p>No se pudo apartar la cita, por favor intente apartarla en otra fecha y hora</p>";
             }
 
             return response($respuesta);
+        }
+    }
+
+    public function consultar_cita(Request $request)
+    {   
+        if($request->ajax()){ 
+
+            $cita = DB::table('citas')
+                        ->join('modalidades', 'citas.modalidad_id', '=', 'modalidades.id')
+                        ->where('citas.alive', true)
+                        ->where('modalidades.alive', true)
+                        ->where('citas.consecutivo_cita', '=', $request->consecutivo)
+                        ->select('citas.*', 'modalidades.tipo_modalidad')
+                        ->get();
+
+            return response($cita);
         }
     }
 }
