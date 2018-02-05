@@ -16,6 +16,10 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+    @if (Auth::guest())
+    @else
+
       <ul class="nav navbar-nav">
 
         <li class="dropdown">
@@ -33,7 +37,6 @@
           </ul>
         </li>
 
-
       </ul>  
 
       <ul class="nav navbar-nav">
@@ -50,36 +53,33 @@
               <li><a href="{{ route('citas.index') }}"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp Citas </a></li> 
           </ul>
         </li>
+    
+      </ul> 
 
-        
-      </ul>  
+    @endif 
 
       <ul class="nav navbar-nav navbar-right">
-          <!-- Authentication Links -->
-          @if (Auth::guest())
-<!--               <li><a href="">Acceder</a></li>
-              <li><a href="e">Registrarse</a></li> -->
-          @else
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                     {{ Auth::user()->nombres }} {{ Auth::user()->apellidos }}<span class="caret"></span>
-                  </a>
 
-                  <ul class="dropdown-menu" role="menu">
-                      <li>
-                          <a href="{{ url('/logout') }}"
-                              onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-                              Cerrar sesión
-                          </a>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+               {{ Auth::user()->nombres }} {{ Auth::user()->apellidos }}<span class="caret"></span>
+            </a>
 
-                          <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                              {{ csrf_field() }}
-                          </form>
-                      </li>
-                  </ul>
-              </li>
-          @endif
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="{{ url('/logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        Cerrar sesión
+                    </a>
+
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            </ul>
+        </li>
+          
       </ul>  
        
     </div><!-- /.navbar-collapse -->

@@ -45,10 +45,10 @@
 							<a data-toggle="tooltip" data-placement="top" title="Detalles" href="{{ route('citas.show',$cita->id) }}" class="btn btn-default btn-xs">
 								<i class="fa fa-eye" aria-hidden="true"></i>
 							</a>
-							<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('citas.edit',$cita->id) }}" class="btn btn-warning btn-xs">
+<!-- 							<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('citas.edit',$cita->id) }}" class="btn btn-warning btn-xs">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
-							</a>
-							<a data-toggle="tooltip" data-placement="top" title="Cancelar cita" href="{{ route('citas.destroy',$cita->id) }}" class="btn btn-danger btn-xs confirm_F">
+							</a> -->
+							<a data-toggle="tooltip" data-placement="top" title="Cancelar cita" href="{{ route('citas.destroy',$cita->id) }}" class="btn btn-danger btn-xs cancelar_cita">
 								<i class="fa fa-times" aria-hidden="true"></i>
 							</a>
 						</td>

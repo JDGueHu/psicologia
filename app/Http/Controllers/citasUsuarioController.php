@@ -193,7 +193,7 @@ class citasUsuarioController extends Controller
         $cita_confirmada = Cita::find($cita[0]->id);
 
         $cita_confirmada->estado = 'Confirmada';
-        //$cita_confirmada->save();
+        $cita_confirmada->save();
 
         //Datos para envio de correos a usuario y administrador
 
@@ -203,20 +203,20 @@ class citasUsuarioController extends Controller
         //dd($email_admin);
 
         //Correo para el usuario
-        Mail::to($usuario->email)
-            ->send(new email_usuario(                
-                'Confirmada',
-                $email_admin[0]->valor,
-                $cita)
-            );
+        // Mail::to($usuario->email)
+        //     ->send(new email_usuario(                
+        //         'Confirmada',
+        //         $email_admin[0]->valor,
+        //         $cita)
+        //     );
 
-        //Correo para el admin
-        Mail::to($email_admin[0]->valor)
-            ->send(new email_admin(                
-                'Confirmada',
-                $email_admin[0]->valor,
-                $cita)
-            );
+        // //Correo para el admin
+        // Mail::to($email_admin[0]->valor)
+        //     ->send(new email_admin(                
+        //         'Confirmada',
+        //         $email_admin[0]->valor,
+        //         $cita)
+        //     );
 
         // Mail::send(['text'=>'email.confirmacion_usuario'],['name','Juan'],function($message){
         //     $message->to('jdguehu@gmail.com','To Bitfunes')->subject('teest');
@@ -251,23 +251,26 @@ class citasUsuarioController extends Controller
         $cita_cancelada = Cita::find($cita[0]->id);
 
         $cita_cancelada->estado = 'Cancelada';
-        //$cita_cancelada->save();
+        $cita_cancelada->save();
 
-        //Correo para el usuario
-        Mail::to($usuario->email)
-            ->send(new email_usuario(                
-                'Cancelada',
-                $email_admin[0]->valor,
-                $cita)
-            );
+        //Usuario de la cita
+        $usuario = User::find($cita[0]->usuario_id);
 
-        //Correo para el admin
-        Mail::to($email_admin[0]->valor)
-            ->send(new email_admin(                
-                'Cancelada',
-                $email_admin[0]->valor,
-                $cita)
-            );
+        // //Correo para el usuario
+        // Mail::to($usuario->email)
+        //     ->send(new email_usuario(                
+        //         'Cancelada',
+        //         $email_admin[0]->valor,
+        //         $cita)
+        //     );
+
+        // //Correo para el admin
+        // Mail::to($email_admin[0]->valor)
+        //     ->send(new email_admin(                
+        //         'Cancelada',
+        //         $email_admin[0]->valor,
+        //         $cita)
+        //     );
 
         flash('Cita <b>'.$cita_cancelada->consecutivo_cita.'</b> se cancelado exitosamente', 'danger')->important();
         return redirect()->route('datos_usuario.index');

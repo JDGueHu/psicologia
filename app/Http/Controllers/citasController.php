@@ -126,7 +126,49 @@ class citasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Obtener los datos de la cita
+        $cita = DB::table('citas')
+                    ->join('modalidades', 'citas.modalidad_id', '=', 'modalidades.id')
+                    ->where('citas.alive', true)
+                    ->where('modalidades.alive', true)
+                    ->where('citas.id', '=', $id)
+                    ->select('citas.*', 'modalidades.tipo_modalidad')
+                    ->get();
+
+        // Obtener email para envio de correo al administrador
+        $email_admin = DB::table('parametros')
+                    ->where('parametros.alive', true)
+                    ->where('parametros.llave','=', 'EMAIL_ADMIN')
+                    ->select('parametros.*')
+                    ->get();
+
+        //Cancelar cita      
+        $cita_cancelada = Cita::find($cita[0]->id);
+
+        $cita_cancelada->estado = 'Cancelada';
+        $cita_cancelada->save();
+
+        //Usuario de la cita
+        $usuario = User::find($cita[0]->usuario_id);
+
+        // //Correo para el usuario
+        // Mail::to($usuario->email)
+        //     ->send(new email_usuario(                
+        //         'Cancelada',
+        //         $email_admin[0]->valor,
+        //         $cita)
+        //     );
+
+        // //Correo para el admin
+        // Mail::to($email_admin[0]->valor)
+        //     ->send(new email_admin(                
+        //         'Cancelada',
+        //         $email_admin[0]->valor,
+        //         $cita)
+        //     );
+
+        flash('Cita <b>'.$cita_cancelada->consecutivo_cita.'</b> se cancelado exitosamente', 'danger')->important();
+        return redirect()->route('citas.index');
     }
 
     public function activar($id)
