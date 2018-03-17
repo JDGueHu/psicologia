@@ -33,7 +33,8 @@
               <li><a href="{{ route('ciudad_cita.index') }}"><i class="fa fa-globe" aria-hidden="true"></i> &nbsp Ciudades visita </a></li>
               <li><a href="{{ route('dias.index') }}"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp Días </a></li>
               <li><a href="{{ route('modalidad.index') }}"><i class="fa fa-server" aria-hidden="true"></i> &nbsp Modalidades </a></li>     
-              <li><a href="{{ route('parametro.index') }}"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp Parámetros </a></li>      
+              <!-- <li><a href="{{ route('motivoCancelacion.index') }}"><i class="fa fa-ban" aria-hidden="true"></i> &nbsp Motivos de cancelación </a></li>   -->
+              <li><a href="{{ route('parametro.index') }}"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp Parámetros </a></li>     
           </ul>
         </li>
 

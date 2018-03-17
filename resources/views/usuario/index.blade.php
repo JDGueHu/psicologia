@@ -5,7 +5,7 @@
 {!! Form::model($user,['route' => ['datos_usuario.update',$user->id], 'method' => 'PUT']) !!}
 
 {!! Form::submit('Guardar',['class' => 'btn btn-primary separarTop separarBottom'])  !!}
-<a style="text-decoration: none;" href="{{ route('ciudad_cita.index') }}">
+<a style="text-decoration: none;" href="{{ url('/') }}">
     {!! Form::button('Regresar',['class' => 'btn btn-default separarTop separarBottom'])  !!}
 </a>
 
@@ -149,7 +149,7 @@
 
 
 {!! Form::submit('Guardar',['class' => 'btn btn-primary separarTop separarBottomButtonn'])  !!}
-<a style="text-decoration: none;" href="{{ route('ciudad_cita.index') }}">
+<a style="text-decoration: none;" href="{{ url('/') }}">
     {!! Form::button('Regresar',['class' => 'btn btn-default separarTop separarBottomButtonn'])  !!}
 </a>
 

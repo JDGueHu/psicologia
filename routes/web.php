@@ -110,6 +110,17 @@ Route::group(['prefix'=>'configuracion','middleware' => 'auth'],function(){
 		'uses' => 'parametrosController@consultar_parametros',
 		'as' => 'parametro.consultar_parametros'
 	]);
+
+	Route::resource('motivoCancelacion','cancelacionCitasController');
+	Route::get('motivoCancelacion/{id}/destroy',[
+		'uses' => 'cancelacionCitasController@destroy',
+		'as' => 'motivoCancelacion.destroy'
+	]);
+	Route::get('motivoCancelacion/{id}/activar',[
+		'uses' => 'cancelacionCitasController@activar',
+		'as' => 'motivoCancelacion.activar'
+	]);
+
 });
 
 Route::group(['prefix'=>'administracion','middleware' => 'auth'],function(){

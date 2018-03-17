@@ -48,11 +48,42 @@ $( document ).ready(function() {
 		cancelButton: "Cancelar",
 	});
 
+
 	$(".cancelar_cita").confirm({
 	    title: 'Cancelar cita',
-	    content: 'Va a cancelar la cita ¿Desea continuar?',
-        confirmButton: "Continuar",
-		cancelButton: "Cancelar",
+	    content: '' +
+	    '<form action="" class="formName">' +
+	    '<div class="form-group">' +
+	    '<label>Motivo de la cancelación</label>' +
+	    '<input type="text" placeholder="Your name" class="name form-control" required />' +
+	    '</div>' +
+	    '</form>',
+	    buttons: {
+	        formSubmit: {
+	            text: 'Ok',
+	            btnClass: 'btn-blue',
+	            action: function () {
+	                var name = this.$content.find('.name').val();
+	                if(!name){
+	                    $.alert('provide a valid name');
+	                    return false;
+	                }
+	                $.alert('Your name is ' + name);
+	            }
+	        },
+	        Cancelar: function () {
+	            //close
+	        },
+	    },
+	    onContentReady: function () {
+	        // bind to events
+	        var jc = this;
+	        this.$content.find('form').on('submit', function (e) {
+	            // if the user submits the form by pressing enter in the field.
+	            e.preventDefault();
+	            jc.$$formSubmit.trigger('click'); // reference the button and click it
+	        });
+	    }
 	});
 
 } );
