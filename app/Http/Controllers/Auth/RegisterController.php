@@ -57,6 +57,7 @@ class RegisterController extends Controller
             'ciudad' => 'required',
             'direccion' => 'required|string|max:400',
             'password' => 'string|min:6|confirmed',
+            'politicas_tratamiento_datos' => 'required'
         ]);
     }
 
@@ -84,12 +85,22 @@ class RegisterController extends Controller
         if($token){
 
             $client = new Client();
+            
+            //GuzzleHttp( version 5.0 )
             $response = $client->post('https://www.google.com/recaptcha/api/siteverify',[
                 'body' => [
                     'secret' => '6LcfFhcUAAAAAJXLULs4lL4r12WDd2CXYycVNrKZ',
                     'response' => $token
                 ]
             ]);
+
+            // $response = $client->post('https://www.google.com/recaptcha/api/siteverify',[
+            //     'body' => [
+            //         'secret' => '6LcfFhcUAAAAAJXLULs4lL4r12WDd2CXYycVNrKZ',
+            //         'response' => $token
+            //     ]
+            // ]);
+            
             $response = json_decode($response->getBody());
             //dd($response);
 

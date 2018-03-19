@@ -155,21 +155,6 @@ class citasUsuarioController extends Controller
         //
     }
 
-    public function consultar_citas(Request $request)
-    {   
-        if($request->ajax()){   
-
-            $citas = DB::table('citas')
-                        ->join('modalidades', 'citas.modalidad_id', '=', 'modalidades.id')
-                        ->where('citas.alive', true)
-                        ->where('modalidades.alive', true)
-                        ->select('citas.*', 'modalidades.tipo_modalidad')
-                        ->get();
-
-            return response($citas);
-        }
-    }
-
     public function confirmar($id)
     {   
 

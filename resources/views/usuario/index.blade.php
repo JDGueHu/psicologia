@@ -102,7 +102,7 @@
             <tbody>
                 @foreach($citas as $cita)
                     <tr>
-                        <td>{{ $cita->consecutivo_cita }}</td>
+                        <td>{{ $cita->consecutivo_cita }}<span style="opacity:0">{{ -$cita->id }}</span></td>
                         <td>{{ $cita->fecha }}</td>
                         <td>{{ $cita->hora }}</td>
                         <td>{{ $cita->tipo_modalidad }}</td>
@@ -127,12 +127,12 @@
                             <a title="Confirmar" class="btn btn-success btn-xs confirmar_cita" href="{{ route('datos_usuario.confirmar',$cita->id) }}">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </a>
-                            <a title="Cancelar" class="btn btn-danger btn-xs cancelar_cita" href="{{ route('datos_usuario.cancelar',$cita->id) }}">
+                            <a title="Cancelar" class="btn btn-danger btn-xs cancelar_cita">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
                             @else
                                 @if($cita->estado == 'Confirmada')
-                                <a title="Cancelar" class="btn btn-danger btn-xs cancelar_cita" href="{{ route('datos_usuario.cancelar',$cita->id) }}">
+                                <a title="Cancelar" class="btn btn-danger btn-xs cancelar_cita">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a> 
                                 @endif                     

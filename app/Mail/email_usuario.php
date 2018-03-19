@@ -38,20 +38,31 @@ class email_usuario extends Mailable
     {
         //return $this->view('view.confirmacion_usuario.blade');
 
-        if ($this->tipo == 'Confirmada'){
+        if ($this->tipo == 'Por confirmar'){
             return $this
                 ->from($this->email_admin)
-                ->subject('Confirmación de cita '.$this->cita->consecutivo_cita)
-                ->view('email.confirmacion_usuario')
+                ->subject('Nueva cita por confirmar'.$this->cita->consecutivo_cita)
+                ->view('email.cita_por_confirmar_usuario')
                     ->with('cita',$this->cita);
         }else{
 
-            if ($this->tipo == 'Cancelada'){
+            if ($this->tipo == 'Confirmada'){
                 return $this
                     ->from($this->email_admin)
-                    ->subject('Cancelación de cita '.$this->cita->consecutivo_cita)
-                    ->view('email.cancelacion_usuario')
+                    ->subject('Confirmación de cita '.$this->cita->consecutivo_cita)
+                    ->view('email.confirmacion_usuario')
                         ->with('cita',$this->cita);
+            }else{
+
+
+                if ($this->tipo == 'Cancelada'){
+                    return $this
+                        ->from($this->email_admin)
+                        ->subject('Cancelación de cita '.$this->cita->consecutivo_cita)
+                        ->view('email.cancelacion_usuario')
+                            ->with('cita',$this->cita);
+                }
+
             }
         }
         

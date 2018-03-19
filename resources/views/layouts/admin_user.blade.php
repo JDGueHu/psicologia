@@ -26,6 +26,7 @@
 
 </head>
 <body>
+	@routes
     <div id="app">
 
         @include('layouts.nav')

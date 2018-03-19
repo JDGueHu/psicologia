@@ -8,6 +8,13 @@ use Auth;
 use App\Cita;
 use App\User;
 use App\Modalidad;
+use App\LogCita;
+use Carbon\Carbon;
+use App\Parametro;
+
+use Mail;
+use App\Mail\email_usuario;
+use App\Mail\email_admin;
 
 class citasController extends Controller
 {
@@ -235,7 +242,44 @@ class citasController extends Controller
                     $cita->dirección = $request->direccion_completa;                  
                 }
                 //El estado default de la cotización es Por confirmar, está definido en la migración
-                $cita->save();                
+                $cita->save();  
+
+                //Guardar en el log el movimiento de la cita
+                $log = new LogCita();  
+                $log->cita_id = $cita->id;
+                $log->user_id = Auth::user()->id;
+                $log->accion_sobre_cita = 'Creacion';
+                $log->motivo_accíon = 'Creacion';
+                    $date = Carbon::now(); //Fecha actual
+                $log->fecha = $date->subHours(5); 
+                $log->save();
+
+                // Obtener email para envio de correo al administrador
+                $email_admin = DB::table('parametros')
+                    ->where('parametros.alive', true)
+                    ->where('parametros.llave','=', 'EMAIL_ADMIN')
+                    ->select('parametros.*')
+                    ->get();
+
+                // Obtener email para envio de correo al usuario
+                $user = User::find(Auth::user()->id);
+
+                //Correo para el usuario
+                Mail::to($email_admin[0]->valor)
+                    ->send(new email_usuario(                
+                        'Por confirmar',
+                        $email_admin[0]->valor,
+                        $cita)
+                    );
+
+                // //Correo para el admin
+                // Mail::to($email_admin[0]->valor)
+                //     ->send(new email_admin(                
+                //         'Confirmada',
+                //         $email_admin[0]->valor,
+                //         $cita)
+                //     );
+
 
                 $respuesta = '<p>Su cita se ha apartado exitosamente.<br>El consecutivo de su cita es el <b>'.$cita->consecutivo_cita.'</b>.<br>Recibirá un correo con los detalles de la cita.</p>';
             }
