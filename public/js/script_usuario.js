@@ -43,7 +43,7 @@ $(document).ready(function() {
 		cadena = cadena.split("-"); // Sacar el id del registro que está separado por guion (es id está en la segunda posición, indice 1 del array)
 		var url = route('datos_usuario.cancelar'); // URL de la acción cancelar cita
 		//alert(url);
-		$(this).parents('tr').children().eq(5).children('a').children('i').addClass('fa-spin');
+		$(this).parents('tr').children().eq(5).children('a').last().removeClass('visible');
 
 		$.confirm({
 		    title: 'Cancelar cita',

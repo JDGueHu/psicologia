@@ -138,8 +138,8 @@
                                 </a> 
                                 @endif                     
                             @endif
-                            <a title="Cancelar" class="btn btn-info btn-xs spinner">
-                                <i class="fa fa-refresh"></i>
+                            <a title="Cancelar" class="btn btn-info btn-xs visible">
+                                <i class="fa fa-refresh fa-spin"></i>
                             </a>
                         </td>
                     </tr>
