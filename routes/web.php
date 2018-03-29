@@ -177,7 +177,7 @@ Route::group(['prefix'=>'usuario','middleware' => 'auth'],function(){
 		'uses' => 'citasUsuarioController@confirmar',
 		'as' => 'datos_usuario.confirmar'
 	]);
-	Route::get('datos_usuario/{id}/cancelar',[
+	Route::post('datos_usuario/cancelar',[
 		'uses' => 'citasUsuarioController@cancelar',
 		'as' => 'datos_usuario.cancelar'
 	]);

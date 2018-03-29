@@ -121,7 +121,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                          <div class="g-recaptcha" data-sitekey="6LcfFhcUAAAAACXEyM5NnQcHBsyTItK7BHbO8IEr"></div>
+                          <div class="g-recaptcha" data-sitekey="6LdTsU0UAAAAALisUHX3SDx2uQ5oh9qmCizz7eUV"></div>
                         </div>
                         <div class="col-md-6 {{ $errors->has('politicas_tratamiento_datos') ? ' has-error' : '' }}">
                             <input type="checkbox" required name="politicas_tratamiento_datos" id="politicas_tratamiento_datos"> He leido y acepto la <a href=""><b>Política de tratamiento de información y datos personales</b></a>

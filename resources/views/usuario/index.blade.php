@@ -88,6 +88,7 @@
     <div class="panel-body">
 
     <div class="table-responsive">
+        <!-- {{ csrf_field() }} -->
         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -137,6 +138,9 @@
                                 </a> 
                                 @endif                     
                             @endif
+                            <a title="Cancelar" class="btn btn-info btn-xs spinner">
+                                <i class="fa fa-refresh"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

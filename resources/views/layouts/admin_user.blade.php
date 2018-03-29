@@ -65,6 +65,8 @@
 <script src="{{ asset('chosen/chosen.jquery.js') }}"></script>
 <script src="{{ asset('Trumbowyg-master/dist/trumbowyg.min.js') }}"></script>
 
+<script src="{{ asset('bootstrap-notify/dist/bootstrap-notify.min.js') }}"></script> 
+
 <!-- Vendor Scripts -->
 <script src="{{ asset('js/modernizr.custom.js') }}"></script> 
 <script src="{{ asset('js/jquery.isotope.min.js') }}"></script> 

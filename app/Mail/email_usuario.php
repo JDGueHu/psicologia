@@ -41,7 +41,7 @@ class email_usuario extends Mailable
         if ($this->tipo == 'Por confirmar'){
             return $this
                 ->from($this->email_admin)
-                ->subject('Nueva cita por confirmar'.$this->cita->consecutivo_cita)
+                ->subject('Nueva cita por confirmar '.$this->cita->consecutivo_cita)
                 ->view('email.cita_por_confirmar_usuario')
                     ->with('cita',$this->cita);
         }else{
@@ -49,7 +49,7 @@ class email_usuario extends Mailable
             if ($this->tipo == 'Confirmada'){
                 return $this
                     ->from($this->email_admin)
-                    ->subject('Confirmación de cita '.$this->cita->consecutivo_cita)
+                    ->subject('Confirmación de cita '.$this->cita[0]->consecutivo_cita)
                     ->view('email.confirmacion_usuario')
                         ->with('cita',$this->cita);
             }else{
@@ -58,7 +58,7 @@ class email_usuario extends Mailable
                 if ($this->tipo == 'Cancelada'){
                     return $this
                         ->from($this->email_admin)
-                        ->subject('Cancelación de cita '.$this->cita->consecutivo_cita)
+                        ->subject('Cancelación de cita '.$this->cita[0]->consecutivo_cita)
                         ->view('email.cancelacion_usuario')
                             ->with('cita',$this->cita);
                 }
@@ -66,5 +66,6 @@ class email_usuario extends Mailable
             }
         }
         
+
     }
 }

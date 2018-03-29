@@ -36,20 +36,29 @@ class email_admin extends Mailable
     public function build()
     {
 
-        if ($this->tipo == 'Confirmada'){
+        if ($this->tipo == 'Por confirmar'){
             return $this
                 ->from($this->email_admin)
-                ->subject('Confirmación de cita '.$this->cita->consecutivo_cita)
-                ->view('email.confirmacion_admin')
+                ->subject('Nueva cita por confirmar '.$this->cita->consecutivo_cita)
+                ->view('email.cita_por_confirmar_admin')
                     ->with('cita',$this->cita);
         }else{
 
-            if ($this->tipo == 'Cancelada'){
+            if ($this->tipo == 'Confirmada'){
                 return $this
                     ->from($this->email_admin)
-                    ->subject('Cancelación de cita '.$this->cita->consecutivo_cita)
-                    ->view('email.cancelacion_admin')
+                    ->subject('Confirmación de cita '.$this->cita[0]->consecutivo_cita)
+                    ->view('email.confirmacion_admin')
                         ->with('cita',$this->cita);
+            }else{
+
+                if ($this->tipo == 'Cancelada'){
+                    return $this
+                        ->from($this->email_admin)
+                        ->subject('Cancelación de cita '.$this->cita[0]->consecutivo_cita)
+                        ->view('email.cancelacion_admin')
+                            ->with('cita',$this->cita);
+                }
             }
 
         }

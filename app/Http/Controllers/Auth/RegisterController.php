@@ -89,17 +89,10 @@ class RegisterController extends Controller
             //GuzzleHttp( version 5.0 )
             $response = $client->post('https://www.google.com/recaptcha/api/siteverify',[
                 'body' => [
-                    'secret' => '6LcfFhcUAAAAAJXLULs4lL4r12WDd2CXYycVNrKZ',
+                    'secret' => '6LdTsU0UAAAAAFxppGfSwM1faGlpfHEveJGaeayg',
                     'response' => $token
                 ]
             ]);
-
-            // $response = $client->post('https://www.google.com/recaptcha/api/siteverify',[
-            //     'body' => [
-            //         'secret' => '6LcfFhcUAAAAAJXLULs4lL4r12WDd2CXYycVNrKZ',
-            //         'response' => $token
-            //     ]
-            // ]);
             
             $response = json_decode($response->getBody());
             //dd($response);

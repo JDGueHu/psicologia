@@ -265,20 +265,20 @@ class citasController extends Controller
                 $user = User::find(Auth::user()->id);
 
                 //Correo para el usuario
-                Mail::to($email_admin[0]->valor)
+                Mail::to($user->email)
                     ->send(new email_usuario(                
                         'Por confirmar',
                         $email_admin[0]->valor,
                         $cita)
                     );
 
-                // //Correo para el admin
-                // Mail::to($email_admin[0]->valor)
-                //     ->send(new email_admin(                
-                //         'Confirmada',
-                //         $email_admin[0]->valor,
-                //         $cita)
-                //     );
+                //Correo para el admin
+                Mail::to($email_admin[0]->valor)
+                    ->send(new email_admin(                
+                        'Por confirmar',
+                        $email_admin[0]->valor,
+                        $cita)
+                    );
 
 
                 $respuesta = '<p>Su cita se ha apartado exitosamente.<br>El consecutivo de su cita es el <b>'.$cita->consecutivo_cita.'</b>.<br>Recibirá un correo con los detalles de la cita.</p>';
@@ -299,7 +299,7 @@ class citasController extends Controller
                         ->join('modalidades', 'citas.modalidad_id', '=', 'modalidades.id')
                         ->where('citas.alive', true)
                         ->where('modalidades.alive', true)
-                        ->where('citas.consecutivo_cita', '=', $request->consecutivo)
+                        ->where('citas.id', '=', $request->consecutivo)
                         ->select('citas.*', 'modalidades.tipo_modalidad')
                         ->get();
 
